@@ -262,7 +262,7 @@
                         },
                         "pickupAddressPlaceId": {
                           "type": "string",
-                          "description": "Place ID of the pickup address",
+                          "description": "Unique ID to identify the merchant. This can be the store ID of the merchant or the [Google place_id](https://developers.google.com/maps/documentation/geocoding/requests-reverse-geocoding) of the merchant's store",
                           "example": "ChIJj25rEpmUwQ8ROH4YrabOvdc"
                         },
                         "pickupAddressLatitude": {
@@ -297,7 +297,18 @@
                           "description": "Phone number for pickup contact",
                           "example": "+2250142092323"
                         }
-                      }
+                      },
+                      "required":[
+                        "name",
+                        "weight",
+                        "size",
+                        "pickupAddressPlaceId",
+                        "pickupAddressLatitude",
+                        "pickupAddressLongitude",
+                        "pickupAddressLocality",
+                        "pickupAddressLandMark",
+                        "pickupPhoneNumber"
+                      ]
                     }
                   }
                 },
