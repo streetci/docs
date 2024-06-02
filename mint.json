@@ -55,10 +55,7 @@
       "group": "API Documentation",
       "pages": ["api-reference/introduction"]
     },
-    {
-      "group": "Delivery Fee",
-      "pages": ["api-reference/order/endpoint/get-fee"]
-    },
+    
     {
       "group": "Delivery Order",
       "pages": [

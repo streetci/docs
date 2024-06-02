@@ -298,7 +298,7 @@
                           "example": "+2250142092323"
                         }
                       },
-                      "required":[
+                      "required": [
                         "name",
                         "weight",
                         "size",
