@@ -32,102 +32,125 @@
                     "properties": {
                       "id": {
                         "type": "integer",
+                        "description": "The unique identifier of the order",
                         "example": 1
                       },
                       "deliveryAddressLatitude": {
                         "type": "number",
                         "format": "float",
+                        "description": "Latitude of the delivery address",
                         "example": 5.4054499
                       },
                       "deliveryAddressLongitude": {
                         "type": "number",
                         "format": "float",
+                        "description": "Longitude of the delivery address",
                         "example": -3.9947895
                       },
                       "deliveryAddressLocality": {
                         "type": "string",
+                        "description": "Locality of the delivery address",
                         "example": "Le Plateau"
                       },
                       "deliveryAddressName": {
                         "type": "string",
+                        "description": "Name of the delivery address",
                         "example": "8X9P+PQW, Rue Montigny, Abidjan"
                       },
                       "deliveryAddressLandMark": {
                         "type": "string",
+                        "description": "Landmark near the delivery address",
                         "example": "Nearest landmark"
                       },
                       "deliveryPhoneNumber": {
                         "type": "string",
+                        "description": "Phone number for delivery contact",
                         "example": "+2250546781941"
                       },
                       "cashOnDelivery": {
                         "type": "boolean",
+                        "description": "Indicates if the payment is to be collected on delivery",
                         "example": false
                       },
                       "itemsTotalPrice": {
                         "type": "number",
                         "format": "float",
+                        "description": "Total price of the items in the order",
                         "example": 75000
                       },
                       "items": {
                         "type": "array",
+                        "description": "List of items in the order",
                         "items": {
                           "type": "object",
                           "properties": {
                             "name": {
                               "type": "string",
+                              "description": "Name of the item",
                               "example": "Smartphone SAMSUNG Galaxy A24"
                             },
                             "weight": {
                               "type": "number",
                               "format": "float",
+                              "description": "Weight of the item",
                               "example": 0.25
                             },
                             "size": {
                               "type": "string",
+                              "description": "Size of the item",
                               "example": "S"
                             },
                             "quantity": {
                               "type": "integer",
+                              "description": "Quantity of the item",
                               "example": 2
                             },
                             "totalPrice": {
                               "type": "number",
                               "format": "float",
+                              "description": "Total price of the item",
                               "example": 15000
                             },
                             "imageUrl": {
                               "type": "string",
+                              "description": "Image URL of the item",
                               "example": "https://placehold.co/720.png"
                             },
                             "pickupAddressPlaceId": {
                               "type": "string",
+                              "description": "Place ID of the pickup address",
                               "example": "ChIJj25rEpmUwQ8ROH4YrabOvdc"
                             },
                             "pickupAddressLatitude": {
                               "type": "number",
                               "format": "float",
+                              "description": "Latitude of the pickup address",
                               "example": 5.4054499
                             },
                             "pickupAddressLongitude": {
                               "type": "number",
                               "format": "float",
+                              "description": "Longitude of the pickup address",
                               "example": -3.9947895
                             },
                             "pickupAddressLocality": {
                               "type": "string",
+                              "description": "Locality of the pickup address",
                               "example": "Cocody"
                             },
                             "pickupAddressName": {
                               "type": "string",
+                              "description": "Name of the pickup address",
                               "example": "Street Côte d'Ivoire, Abidjan"
                             },
                             "pickupAddressLandMark": {
                               "type": "string",
+                              "description": "Landmark near the pickup address",
                               "example": "Socofrais, angré pétro ivoire"
                             },
                             "pickupPhoneNumber": {
                               "type": "string",
+                              "description": "Phone number for pickup contact",
                               "example": "+2250142092323"
                             }
                           }
@@ -135,6 +158,7 @@
                       },
                       "status": {
                         "type": "string",
+                        "description": "Status of the order",
                         "example": "Pending"
                       }
                     }
@@ -158,97 +182,119 @@
                   "deliveryAddressLatitude": {
                     "type": "number",
                     "format": "float",
+                    "description": "Latitude of the delivery address",
                     "example": 5.4054499
                   },
                   "deliveryAddressLongitude": {
                     "type": "number",
                     "format": "float",
+                    "description": "Longitude of the delivery address",
                     "example": -3.9947895
                   },
                   "deliveryAddressLocality": {
                     "type": "string",
+                    "description": "Locality of the delivery address",
                     "example": "Le Plateau"
                   },
                   "deliveryAddressName": {
                     "type": "string",
+                    "description": "Name of the delivery address",
                     "example": "8X9P+PQW, Rue Montigny, Abidjan"
                   },
                   "deliveryAddressLandMark": {
                     "type": "string",
+                    "description": "Landmark near the delivery address",
                     "example": "Nearest landmark"
                   },
                   "deliveryPhoneNumber": {
                     "type": "string",
+                    "description": "Phone number for delivery contact",
                     "example": "+2250546781941"
                   },
                   "cashOnDelivery": {
                     "type": "boolean",
+                    "description": "Indicates if the payment is to be collected on delivery",
                     "example": false
                   },
                   "itemsTotalPrice": {
                     "type": "number",
                     "format": "float",
+                    "description": "Total price of the items in the order",
                     "example": 75000
                   },
                   "items": {
                     "type": "array",
+                    "description": "List of items in the order",
                     "items": {
                       "type": "object",
                       "properties": {
                         "name": {
                           "type": "string",
+                          "description": "Name of the item",
                           "example": "Smartphone SAMSUNG Galaxy A24"
                         },
                         "weight": {
                           "type": "number",
                           "format": "float",
+                          "description": "Weight of the item",
                           "example": 0.25
                         },
                         "size": {
                           "type": "string",
+                          "description": "Size of the item",
                           "example": "S"
                         },
                         "quantity": {
                           "type": "integer",
+                          "description": "Quantity of the item",
                           "example": 2
                         },
                         "totalPrice": {
                           "type": "number",
                           "format": "float",
+                          "description": "Total price of the item",
                           "example": 15000
                         },
                         "imageUrl": {
                           "type": "string",
+                          "description": "Image URL of the item",
                           "example": "https://placehold.co/720.png"
                         },
                         "pickupAddressPlaceId": {
                           "type": "string",
+                          "description": "Place ID of the pickup address",
                           "example": "ChIJj25rEpmUwQ8ROH4YrabOvdc"
                         },
                         "pickupAddressLatitude": {
                           "type": "number",
                           "format": "float",
+                          "description": "Latitude of the pickup address",
                           "example": 5.4054499
                         },
                         "pickupAddressLongitude": {
                           "type": "number",
                           "format": "float",
+                          "description": "Longitude of the pickup address",
                           "example": -3.9947895
                         },
                         "pickupAddressLocality": {
                           "type": "string",
+                          "description": "Locality of the pickup address",
                           "example": "Cocody"
                         },
                         "pickupAddressName": {
                           "type": "string",
+                          "description": "Name of the pickup address",
                           "example": "Street Côte d'Ivoire, Abidjan"
                         },
                         "pickupAddressLandMark": {
                           "type": "string",
+                          "description": "Landmark near the pickup address",
                           "example": "Socofrais, angré pétro ivoire"
                         },
                         "pickupPhoneNumber": {
                           "type": "string",
+                          "description": "Phone number for pickup contact",
                           "example": "+2250142092323"
                         }
                       }
@@ -280,102 +326,125 @@
                   "properties": {
                     "id": {
                       "type": "integer",
+                      "description": "The unique identifier of the order",
                       "example": 1
                     },
                     "deliveryAddressLatitude": {
                       "type": "number",
                       "format": "float",
+                      "description": "Latitude of the delivery address",
                       "example": 5.4054499
                     },
                     "deliveryAddressLongitude": {
                       "type": "number",
                       "format": "float",
+                      "description": "Longitude of the delivery address",
                       "example": -3.9947895
                     },
                     "deliveryAddressLocality": {
                       "type": "string",
+                      "description": "Locality of the delivery address",
                       "example": "Le Plateau"
                     },
                     "deliveryAddressName": {
                       "type": "string",
+                      "description": "Name of the delivery address",
                       "example": "8X9P+PQW, Rue Montigny, Abidjan"
                     },
                     "deliveryAddressLandMark": {
                       "type": "string",
+                      "description": "Landmark near the delivery address",
                       "example": "Nearest landmark"
                     },
                     "deliveryPhoneNumber": {
                       "type": "string",
+                      "description": "Phone number for delivery contact",
                       "example": "+2250546781941"
                     },
                     "cashOnDelivery": {
                       "type": "boolean",
+                      "description": "Indicates if the payment is to be collected on delivery",
                       "example": false
                     },
                     "itemsTotalPrice": {
                       "type": "number",
                       "format": "float",
+                      "description": "Total price of the items in the order",
                       "example": 75000
                     },
                     "items": {
                       "type": "array",
+                      "description": "List of items in the order",
                       "items": {
                         "type": "object",
                         "properties": {
                           "name": {
                             "type": "string",
+                            "description": "Name of the item",
                             "example": "Smartphone SAMSUNG Galaxy A24"
                           },
                           "weight": {
                             "type": "number",
                             "format": "float",
+                            "description": "Weight of the item",
                             "example": 0.25
                           },
                           "size": {
                             "type": "string",
+                            "description": "Size of the item",
                             "example": "S"
                           },
                           "quantity": {
                             "type": "integer",
+                            "description": "Quantity of the item",
                             "example": 2
                           },
                           "totalPrice": {
                             "type": "number",
                             "format": "float",
+                            "description": "Total price of the item",
                             "example": 15000
                           },
                           "imageUrl": {
                             "type": "string",
+                            "description": "Image URL of the item",
                             "example": "https://placehold.co/720.png"
                           },
                           "pickupAddressPlaceId": {
                             "type": "string",
+                            "description": "Place ID of the pickup address",
                             "example": "ChIJj25rEpmUwQ8ROH4YrabOvdc"
                           },
                           "pickupAddressLatitude": {
                             "type": "number",
                             "format": "float",
+                            "description": "Latitude of the pickup address",
                             "example": 5.4054499
                           },
                           "pickupAddressLongitude": {
                             "type": "number",
                             "format": "float",
+                            "description": "Longitude of the pickup address",
                             "example": -3.9947895
                           },
                           "pickupAddressLocality": {
                             "type": "string",
+                            "description": "Locality of the pickup address",
                             "example": "Cocody"
                           },
                           "pickupAddressName": {
                             "type": "string",
+                            "description": "Name of the pickup address",
                             "example": "Street Côte d'Ivoire, Abidjan"
                           },
                           "pickupAddressLandMark": {
                             "type": "string",
+                            "description": "Landmark near the pickup address",
                             "example": "Socofrais, angré pétro ivoire"
                           },
                           "pickupPhoneNumber": {
                             "type": "string",
+                            "description": "Phone number for pickup contact",
                             "example": "+2250142092323"
                           }
                         }
@@ -383,6 +452,7 @@
                     },
                     "status": {
                       "type": "string",
+                      "description": "Status of the order",
                       "example": "Pending"
                     }
                   }
@@ -417,102 +487,125 @@
                   "properties": {
                     "id": {
                       "type": "integer",
+                      "description": "The unique identifier of the order",
                       "example": 1
                     },
                     "deliveryAddressLatitude": {
                       "type": "number",
                       "format": "float",
+                      "description": "Latitude of the delivery address",
                       "example": 5.4054499
                     },
                     "deliveryAddressLongitude": {
                       "type": "number",
                       "format": "float",
+                      "description": "Longitude of the delivery address",
                       "example": -3.9947895
                     },
                     "deliveryAddressLocality": {
                       "type": "string",
+                      "description": "Locality of the delivery address",
                       "example": "Le Plateau"
                     },
                     "deliveryAddressName": {
                       "type": "string",
+                      "description": "Name of the delivery address",
                       "example": "8X9P+PQW, Rue Montigny, Abidjan"
                     },
                     "deliveryAddressLandMark": {
                       "type": "string",
+                      "description": "Landmark near the delivery address",
                       "example": "Nearest landmark"
                     },
                     "deliveryPhoneNumber": {
                       "type": "string",
+                      "description": "Phone number for delivery contact",
                       "example": "+2250546781941"
                     },
                     "cashOnDelivery": {
                       "type": "boolean",
+                      "description": "Indicates if the payment is to be collected on delivery",
                       "example": false
                     },
                     "itemsTotalPrice": {
                       "type": "number",
                       "format": "float",
+                      "description": "Total price of the items in the order",
                       "example": 75000
                     },
                     "items": {
                       "type": "array",
+                      "description": "List of items in the order",
                       "items": {
                         "type": "object",
                         "properties": {
                           "name": {
                             "type": "string",
+                            "description": "Name of the item",
                             "example": "Smartphone SAMSUNG Galaxy A24"
                           },
                           "weight": {
                             "type": "number",
                             "format": "float",
+                            "description": "Weight of the item",
                             "example": 0.25
                           },
                           "size": {
                             "type": "string",
+                            "description": "Size of the item",
                             "example": "S"
                           },
                           "quantity": {
                             "type": "integer",
+                            "description": "Quantity of the item",
                             "example": 2
                           },
                           "totalPrice": {
                             "type": "number",
                             "format": "float",
+                            "description": "Total price of the item",
                             "example": 15000
                           },
                           "imageUrl": {
                             "type": "string",
+                            "description": "Image URL of the item",
                             "example": "https://placehold.co/720.png"
                           },
                           "pickupAddressPlaceId": {
                             "type": "string",
+                            "description": "Place ID of the pickup address",
                             "example": "ChIJj25rEpmUwQ8ROH4YrabOvdc"
                           },
                           "pickupAddressLatitude": {
                             "type": "number",
                             "format": "float",
+                            "description": "Latitude of the pickup address",
                             "example": 5.4054499
                           },
                           "pickupAddressLongitude": {
                             "type": "number",
                             "format": "float",
+                            "description": "Longitude of the pickup address",
                             "example": -3.9947895
                           },
                           "pickupAddressLocality": {
                             "type": "string",
+                            "description": "Locality of the pickup address",
                             "example": "Cocody"
                           },
                           "pickupAddressName": {
                             "type": "string",
+                            "description": "Name of the pickup address",
                             "example": "Street Côte d'Ivoire, Abidjan"
                           },
                           "pickupAddressLandMark": {
                             "type": "string",
+                            "description": "Landmark near the pickup address",
                             "example": "Socofrais, angré pétro ivoire"
                           },
                           "pickupPhoneNumber": {
                             "type": "string",
+                            "description": "Phone number for pickup contact",
                             "example": "+2250142092323"
                           }
                         }
@@ -520,6 +613,7 @@
                     },
                     "status": {
                       "type": "string",
+                      "description": "Status of the order",
                       "example": "Pending"
                     }
                   }
@@ -552,97 +646,119 @@
                   "deliveryAddressLatitude": {
                     "type": "number",
                     "format": "float",
+                    "description": "Latitude of the delivery address",
                     "example": 5.4054499
                   },
                   "deliveryAddressLongitude": {
                     "type": "number",
                     "format": "float",
+                    "description": "Longitude of the delivery address",
                     "example": -3.9947895
                   },
                   "deliveryAddressLocality": {
                     "type": "string",
+                    "description": "Locality of the delivery address",
                     "example": "Le Plateau"
                   },
                   "deliveryAddressName": {
                     "type": "string",
+                    "description": "Name of the delivery address",
                     "example": "8X9P+PQW, Rue Montigny, Abidjan"
                   },
                   "deliveryAddressLandMark": {
                     "type": "string",
+                    "description": "Landmark near the delivery address",
                     "example": "Nearest landmark"
                   },
                   "deliveryPhoneNumber": {
                     "type": "string",
+                    "description": "Phone number for delivery contact",
                     "example": "+2250546781941"
                   },
                   "cashOnDelivery": {
                     "type": "boolean",
+                    "description": "Indicates if the payment is to be collected on delivery",
                     "example": false
                   },
                   "itemsTotalPrice": {
                     "type": "number",
                     "format": "float",
+                    "description": "Total price of the items in the order",
                     "example": 75000
                   },
                   "items": {
                     "type": "array",
+                    "description": "List of items in the order",
                     "items": {
                       "type": "object",
                       "properties": {
                         "name": {
                           "type": "string",
+                          "description": "Name of the item",
                           "example": "Smartphone SAMSUNG Galaxy A24"
                         },
                         "weight": {
                           "type": "number",
                           "format": "float",
+                          "description": "Weight of the item",
                           "example": 0.25
                         },
                         "size": {
                           "type": "string",
+                          "description": "Size of the item",
                           "example": "S"
                         },
                         "quantity": {
                           "type": "integer",
+                          "description": "Quantity of the item",
                           "example": 2
                         },
                         "totalPrice": {
                           "type": "number",
                           "format": "float",
+                          "description": "Total price of the item",
                           "example": 15000
                         },
                         "imageUrl": {
                           "type": "string",
+                          "description": "Image URL of the item",
                           "example": "https://placehold.co/720.png"
                         },
                         "pickupAddressPlaceId": {
                           "type": "string",
+                          "description": "Place ID of the pickup address",
                           "example": "ChIJj25rEpmUwQ8ROH4YrabOvdc"
                         },
                         "pickupAddressLatitude": {
                           "type": "number",
                           "format": "float",
+                          "description": "Latitude of the pickup address",
                           "example": 5.4054499
                         },
                         "pickupAddressLongitude": {
                           "type": "number",
                           "format": "float",
+                          "description": "Longitude of the pickup address",
                           "example": -3.9947895
                         },
                         "pickupAddressLocality": {
                           "type": "string",
+                          "description": "Locality of the pickup address",
                           "example": "Cocody"
                         },
                         "pickupAddressName": {
                           "type": "string",
+                          "description": "Name of the pickup address",
                           "example": "Street Côte d'Ivoire, Abidjan"
                         },
                         "pickupAddressLandMark": {
                           "type": "string",
+                          "description": "Landmark near the pickup address",
                           "example": "Socofrais, angré pétro ivoire"
                         },
                         "pickupPhoneNumber": {
                           "type": "string",
+                          "description": "Phone number for pickup contact",
                           "example": "+2250142092323"
                         }
                       }
@@ -650,6 +766,7 @@
                   },
                   "status": {
                     "type": "string",
+                    "description": "Status of the order",
                     "example": "Shipped"
                   }
                 },
@@ -679,102 +796,125 @@
                   "properties": {
                     "id": {
                       "type": "integer",
+                      "description": "The unique identifier of the order",
                       "example": 1
                     },
                     "deliveryAddressLatitude": {
                       "type": "number",
                       "format": "float",
+                      "description": "Latitude of the delivery address",
                       "example": 5.4054499
                     },
                     "deliveryAddressLongitude": {
                       "type": "number",
                       "format": "float",
+                      "description": "Longitude of the delivery address",
                       "example": -3.9947895
                     },
                     "deliveryAddressLocality": {
                       "type": "string",
+                      "description": "Locality of the delivery address",
                       "example": "Le Plateau"
                     },
                     "deliveryAddressName": {
                       "type": "string",
+                      "description": "Name of the delivery address",
                       "example": "8X9P+PQW, Rue Montigny, Abidjan"
                     },
                     "deliveryAddressLandMark": {
                       "type": "string",
+                      "description": "Landmark near the delivery address",
                       "example": "Nearest landmark"
                     },
                     "deliveryPhoneNumber": {
                       "type": "string",
+                      "description": "Phone number for delivery contact",
                       "example": "+2250546781941"
                     },
                     "cashOnDelivery": {
                       "type": "boolean",
+                      "description": "Indicates if the payment is to be collected on delivery",
                       "example": false
                     },
                     "itemsTotalPrice": {
                       "type": "number",
                       "format": "float",
+                      "description": "Total price of the items in the order",
                       "example": 75000
                     },
                     "items": {
                       "type": "array",
+                      "description": "List of items in the order",
                       "items": {
                         "type": "object",
                         "properties": {
                           "name": {
                             "type": "string",
+                            "description": "Name of the item",
                             "example": "Smartphone SAMSUNG Galaxy A24"
                           },
                           "weight": {
                             "type": "number",
                             "format": "float",
+                            "description": "Weight of the item",
                             "example": 0.25
                           },
                           "size": {
                             "type": "string",
+                            "description": "Size of the item",
                             "example": "S"
                           },
                           "quantity": {
                             "type": "integer",
+                            "description": "Quantity of the item",
                             "example": 2
                           },
                           "totalPrice": {
                             "type": "number",
                             "format": "float",
+                            "description": "Total price of the item",
                             "example": 15000
                           },
                           "imageUrl": {
                             "type": "string",
+                            "description": "Image URL of the item",
                             "example": "https://placehold.co/720.png"
                           },
                           "pickupAddressPlaceId": {
                             "type": "string",
+                            "description": "Place ID of the pickup address",
                             "example": "ChIJj25rEpmUwQ8ROH4YrabOvdc"
                           },
                           "pickupAddressLatitude": {
                             "type": "number",
                             "format": "float",
+                            "description": "Latitude of the pickup address",
                             "example": 5.4054499
                           },
                           "pickupAddressLongitude": {
                             "type": "number",
                             "format": "float",
+                            "description": "Longitude of the pickup address",
                             "example": -3.9947895
                           },
                           "pickupAddressLocality": {
                             "type": "string",
+                            "description": "Locality of the pickup address",
                             "example": "Cocody"
                           },
                           "pickupAddressName": {
                             "type": "string",
+                            "description": "Name of the pickup address",
                             "example": "Street Côte d'Ivoire, Abidjan"
                           },
                           "pickupAddressLandMark": {
                             "type": "string",
+                            "description": "Landmark near the pickup address",
                             "example": "Socofrais, angré pétro ivoire"
                           },
                           "pickupPhoneNumber": {
                             "type": "string",
+                            "description": "Phone number for pickup contact",
                             "example": "+2250142092323"
                           }
                         }
@@ -782,6 +922,7 @@
                     },
                     "status": {
                       "type": "string",
+                      "description": "Status of the order",
                       "example": "Shipped"
                     }
                   }
