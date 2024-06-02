@@ -1,0 +1,815 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Order API",
+    "description": "API for managing orders",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.yourdomain.com/v1",
+      "description": "Production server"
+    },
+    {
+      "url": "https://staging-api.yourdomain.com/v1",
+      "description": "Staging server"
+    }
+  ],
+  "paths": {
+    "/orders": {
+      "get": {
+        "summary": "List Orders",
+        "description": "Retrieve a list of orders",
+        "responses": {
+          "200": {
+            "description": "A list of orders",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer",
+                        "example": 1
+                      },
+                      "deliveryAddressLatitude": {
+                        "type": "number",
+                        "format": "float",
+                        "example": 5.4054499
+                      },
+                      "deliveryAddressLongitude": {
+                        "type": "number",
+                        "format": "float",
+                        "example": -3.9947895
+                      },
+                      "deliveryAddressLocality": {
+                        "type": "string",
+                        "example": "Le Plateau"
+                      },
+                      "deliveryAddressName": {
+                        "type": "string",
+                        "example": "8X9P+PQW, Rue Montigny, Abidjan"
+                      },
+                      "deliveryAddressLandMark": {
+                        "type": "string",
+                        "example": "Nearest landmark"
+                      },
+                      "deliveryPhoneNumber": {
+                        "type": "string",
+                        "example": "+2250546781941"
+                      },
+                      "cashOnDelivery": {
+                        "type": "boolean",
+                        "example": false
+                      },
+                      "itemsTotalPrice": {
+                        "type": "number",
+                        "format": "float",
+                        "example": 75000
+                      },
+                      "items": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "name": {
+                              "type": "string",
+                              "example": "Smartphone SAMSUNG Galaxy A24"
+                            },
+                            "weight": {
+                              "type": "number",
+                              "format": "float",
+                              "example": 0.25
+                            },
+                            "size": {
+                              "type": "string",
+                              "example": "S"
+                            },
+                            "quantity": {
+                              "type": "integer",
+                              "example": 2
+                            },
+                            "totalPrice": {
+                              "type": "number",
+                              "format": "float",
+                              "example": 15000
+                            },
+                            "imageUrl": {
+                              "type": "string",
+                              "example": "https://placehold.co/720.png"
+                            },
+                            "pickupAddressPlaceId": {
+                              "type": "string",
+                              "example": "ChIJj25rEpmUwQ8ROH4YrabOvdc"
+                            },
+                            "pickupAddressLatitude": {
+                              "type": "number",
+                              "format": "float",
+                              "example": 5.4054499
+                            },
+                            "pickupAddressLongitude": {
+                              "type": "number",
+                              "format": "float",
+                              "example": -3.9947895
+                            },
+                            "pickupAddressLocality": {
+                              "type": "string",
+                              "example": "Cocody"
+                            },
+                            "pickupAddressName": {
+                              "type": "string",
+                              "example": "Street Côte d'Ivoire, Abidjan"
+                            },
+                            "pickupAddressLandMark": {
+                              "type": "string",
+                              "example": "Socofrais, angré pétro ivoire"
+                            },
+                            "pickupPhoneNumber": {
+                              "type": "string",
+                              "example": "+2250142092323"
+                            }
+                          }
+                        }
+                      },
+                      "status": {
+                        "type": "string",
+                        "example": "Pending"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create Order",
+        "description": "Create a new order",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "deliveryAddressLatitude": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 5.4054499
+                  },
+                  "deliveryAddressLongitude": {
+                    "type": "number",
+                    "format": "float",
+                    "example": -3.9947895
+                  },
+                  "deliveryAddressLocality": {
+                    "type": "string",
+                    "example": "Le Plateau"
+                  },
+                  "deliveryAddressName": {
+                    "type": "string",
+                    "example": "8X9P+PQW, Rue Montigny, Abidjan"
+                  },
+                  "deliveryAddressLandMark": {
+                    "type": "string",
+                    "example": "Nearest landmark"
+                  },
+                  "deliveryPhoneNumber": {
+                    "type": "string",
+                    "example": "+2250546781941"
+                  },
+                  "cashOnDelivery": {
+                    "type": "boolean",
+                    "example": false
+                  },
+                  "itemsTotalPrice": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 75000
+                  },
+                  "items": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "example": "Smartphone SAMSUNG Galaxy A24"
+                        },
+                        "weight": {
+                          "type": "number",
+                          "format": "float",
+                          "example": 0.25
+                        },
+                        "size": {
+                          "type": "string",
+                          "example": "S"
+                        },
+                        "quantity": {
+                          "type": "integer",
+                          "example": 2
+                        },
+                        "totalPrice": {
+                          "type": "number",
+                          "format": "float",
+                          "example": 15000
+                        },
+                        "imageUrl": {
+                          "type": "string",
+                          "example": "https://placehold.co/720.png"
+                        },
+                        "pickupAddressPlaceId": {
+                          "type": "string",
+                          "example": "ChIJj25rEpmUwQ8ROH4YrabOvdc"
+                        },
+                        "pickupAddressLatitude": {
+                          "type": "number",
+                          "format": "float",
+                          "example": 5.4054499
+                        },
+                        "pickupAddressLongitude": {
+                          "type": "number",
+                          "format": "float",
+                          "example": -3.9947895
+                        },
+                        "pickupAddressLocality": {
+                          "type": "string",
+                          "example": "Cocody"
+                        },
+                        "pickupAddressName": {
+                          "type": "string",
+                          "example": "Street Côte d'Ivoire, Abidjan"
+                        },
+                        "pickupAddressLandMark": {
+                          "type": "string",
+                          "example": "Socofrais, angré pétro ivoire"
+                        },
+                        "pickupPhoneNumber": {
+                          "type": "string",
+                          "example": "+2250142092323"
+                        }
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "deliveryAddressLatitude",
+                  "deliveryAddressLongitude",
+                  "deliveryAddressLocality",
+                  "deliveryAddressName",
+                  "deliveryAddressLandMark",
+                  "deliveryPhoneNumber",
+                  "cashOnDelivery",
+                  "itemsTotalPrice",
+                  "items"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Order created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "example": 1
+                    },
+                    "deliveryAddressLatitude": {
+                      "type": "number",
+                      "format": "float",
+                      "example": 5.4054499
+                    },
+                    "deliveryAddressLongitude": {
+                      "type": "number",
+                      "format": "float",
+                      "example": -3.9947895
+                    },
+                    "deliveryAddressLocality": {
+                      "type": "string",
+                      "example": "Le Plateau"
+                    },
+                    "deliveryAddressName": {
+                      "type": "string",
+                      "example": "8X9P+PQW, Rue Montigny, Abidjan"
+                    },
+                    "deliveryAddressLandMark": {
+                      "type": "string",
+                      "example": "Nearest landmark"
+                    },
+                    "deliveryPhoneNumber": {
+                      "type": "string",
+                      "example": "+2250546781941"
+                    },
+                    "cashOnDelivery": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "itemsTotalPrice": {
+                      "type": "number",
+                      "format": "float",
+                      "example": 75000
+                    },
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string",
+                            "example": "Smartphone SAMSUNG Galaxy A24"
+                          },
+                          "weight": {
+                            "type": "number",
+                            "format": "float",
+                            "example": 0.25
+                          },
+                          "size": {
+                            "type": "string",
+                            "example": "S"
+                          },
+                          "quantity": {
+                            "type": "integer",
+                            "example": 2
+                          },
+                          "totalPrice": {
+                            "type": "number",
+                            "format": "float",
+                            "example": 15000
+                          },
+                          "imageUrl": {
+                            "type": "string",
+                            "example": "https://placehold.co/720.png"
+                          },
+                          "pickupAddressPlaceId": {
+                            "type": "string",
+                            "example": "ChIJj25rEpmUwQ8ROH4YrabOvdc"
+                          },
+                          "pickupAddressLatitude": {
+                            "type": "number",
+                            "format": "float",
+                            "example": 5.4054499
+                          },
+                          "pickupAddressLongitude": {
+                            "type": "number",
+                            "format": "float",
+                            "example": -3.9947895
+                          },
+                          "pickupAddressLocality": {
+                            "type": "string",
+                            "example": "Cocody"
+                          },
+                          "pickupAddressName": {
+                            "type": "string",
+                            "example": "Street Côte d'Ivoire, Abidjan"
+                          },
+                          "pickupAddressLandMark": {
+                            "type": "string",
+                            "example": "Socofrais, angré pétro ivoire"
+                          },
+                          "pickupPhoneNumber": {
+                            "type": "string",
+                            "example": "+2250142092323"
+                          }
+                        }
+                      }
+                    },
+                    "status": {
+                      "type": "string",
+                      "example": "Pending"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orders/{orderId}": {
+      "get": {
+        "summary": "Get Order",
+        "description": "Retrieve a specific order by ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "orderId",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Order details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "example": 1
+                    },
+                    "deliveryAddressLatitude": {
+                      "type": "number",
+                      "format": "float",
+                      "example": 5.4054499
+                    },
+                    "deliveryAddressLongitude": {
+                      "type": "number",
+                      "format": "float",
+                      "example": -3.9947895
+                    },
+                    "deliveryAddressLocality": {
+                      "type": "string",
+                      "example": "Le Plateau"
+                    },
+                    "deliveryAddressName": {
+                      "type": "string",
+                      "example": "8X9P+PQW, Rue Montigny, Abidjan"
+                    },
+                    "deliveryAddressLandMark": {
+                      "type": "string",
+                      "example": "Nearest landmark"
+                    },
+                    "deliveryPhoneNumber": {
+                      "type": "string",
+                      "example": "+2250546781941"
+                    },
+                    "cashOnDelivery": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "itemsTotalPrice": {
+                      "type": "number",
+                      "format": "float",
+                      "example": 75000
+                    },
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string",
+                            "example": "Smartphone SAMSUNG Galaxy A24"
+                          },
+                          "weight": {
+                            "type": "number",
+                            "format": "float",
+                            "example": 0.25
+                          },
+                          "size": {
+                            "type": "string",
+                            "example": "S"
+                          },
+                          "quantity": {
+                            "type": "integer",
+                            "example": 2
+                          },
+                          "totalPrice": {
+                            "type": "number",
+                            "format": "float",
+                            "example": 15000
+                          },
+                          "imageUrl": {
+                            "type": "string",
+                            "example": "https://placehold.co/720.png"
+                          },
+                          "pickupAddressPlaceId": {
+                            "type": "string",
+                            "example": "ChIJj25rEpmUwQ8ROH4YrabOvdc"
+                          },
+                          "pickupAddressLatitude": {
+                            "type": "number",
+                            "format": "float",
+                            "example": 5.4054499
+                          },
+                          "pickupAddressLongitude": {
+                            "type": "number",
+                            "format": "float",
+                            "example": -3.9947895
+                          },
+                          "pickupAddressLocality": {
+                            "type": "string",
+                            "example": "Cocody"
+                          },
+                          "pickupAddressName": {
+                            "type": "string",
+                            "example": "Street Côte d'Ivoire, Abidjan"
+                          },
+                          "pickupAddressLandMark": {
+                            "type": "string",
+                            "example": "Socofrais, angré pétro ivoire"
+                          },
+                          "pickupPhoneNumber": {
+                            "type": "string",
+                            "example": "+2250142092323"
+                          }
+                        }
+                      }
+                    },
+                    "status": {
+                      "type": "string",
+                      "example": "Pending"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update Order",
+        "description": "Update an existing order by ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "orderId",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "deliveryAddressLatitude": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 5.4054499
+                  },
+                  "deliveryAddressLongitude": {
+                    "type": "number",
+                    "format": "float",
+                    "example": -3.9947895
+                  },
+                  "deliveryAddressLocality": {
+                    "type": "string",
+                    "example": "Le Plateau"
+                  },
+                  "deliveryAddressName": {
+                    "type": "string",
+                    "example": "8X9P+PQW, Rue Montigny, Abidjan"
+                  },
+                  "deliveryAddressLandMark": {
+                    "type": "string",
+                    "example": "Nearest landmark"
+                  },
+                  "deliveryPhoneNumber": {
+                    "type": "string",
+                    "example": "+2250546781941"
+                  },
+                  "cashOnDelivery": {
+                    "type": "boolean",
+                    "example": false
+                  },
+                  "itemsTotalPrice": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 75000
+                  },
+                  "items": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "example": "Smartphone SAMSUNG Galaxy A24"
+                        },
+                        "weight": {
+                          "type": "number",
+                          "format": "float",
+                          "example": 0.25
+                        },
+                        "size": {
+                          "type": "string",
+                          "example": "S"
+                        },
+                        "quantity": {
+                          "type": "integer",
+                          "example": 2
+                        },
+                        "totalPrice": {
+                          "type": "number",
+                          "format": "float",
+                          "example": 15000
+                        },
+                        "imageUrl": {
+                          "type": "string",
+                          "example": "https://placehold.co/720.png"
+                        },
+                        "pickupAddressPlaceId": {
+                          "type": "string",
+                          "example": "ChIJj25rEpmUwQ8ROH4YrabOvdc"
+                        },
+                        "pickupAddressLatitude": {
+                          "type": "number",
+                          "format": "float",
+                          "example": 5.4054499
+                        },
+                        "pickupAddressLongitude": {
+                          "type": "number",
+                          "format": "float",
+                          "example": -3.9947895
+                        },
+                        "pickupAddressLocality": {
+                          "type": "string",
+                          "example": "Cocody"
+                        },
+                        "pickupAddressName": {
+                          "type": "string",
+                          "example": "Street Côte d'Ivoire, Abidjan"
+                        },
+                        "pickupAddressLandMark": {
+                          "type": "string",
+                          "example": "Socofrais, angré pétro ivoire"
+                        },
+                        "pickupPhoneNumber": {
+                          "type": "string",
+                          "example": "+2250142092323"
+                        }
+                      }
+                    }
+                  },
+                  "status": {
+                    "type": "string",
+                    "example": "Shipped"
+                  }
+                },
+                "required": [
+                  "deliveryAddressLatitude",
+                  "deliveryAddressLongitude",
+                  "deliveryAddressLocality",
+                  "deliveryAddressName",
+                  "deliveryAddressLandMark",
+                  "deliveryPhoneNumber",
+                  "cashOnDelivery",
+                  "itemsTotalPrice",
+                  "items",
+                  "status"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Order updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "example": 1
+                    },
+                    "deliveryAddressLatitude": {
+                      "type": "number",
+                      "format": "float",
+                      "example": 5.4054499
+                    },
+                    "deliveryAddressLongitude": {
+                      "type": "number",
+                      "format": "float",
+                      "example": -3.9947895
+                    },
+                    "deliveryAddressLocality": {
+                      "type": "string",
+                      "example": "Le Plateau"
+                    },
+                    "deliveryAddressName": {
+                      "type": "string",
+                      "example": "8X9P+PQW, Rue Montigny, Abidjan"
+                    },
+                    "deliveryAddressLandMark": {
+                      "type": "string",
+                      "example": "Nearest landmark"
+                    },
+                    "deliveryPhoneNumber": {
+                      "type": "string",
+                      "example": "+2250546781941"
+                    },
+                    "cashOnDelivery": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "itemsTotalPrice": {
+                      "type": "number",
+                      "format": "float",
+                      "example": 75000
+                    },
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string",
+                            "example": "Smartphone SAMSUNG Galaxy A24"
+                          },
+                          "weight": {
+                            "type": "number",
+                            "format": "float",
+                            "example": 0.25
+                          },
+                          "size": {
+                            "type": "string",
+                            "example": "S"
+                          },
+                          "quantity": {
+                            "type": "integer",
+                            "example": 2
+                          },
+                          "totalPrice": {
+                            "type": "number",
+                            "format": "float",
+                            "example": 15000
+                          },
+                          "imageUrl": {
+                            "type": "string",
+                            "example": "https://placehold.co/720.png"
+                          },
+                          "pickupAddressPlaceId": {
+                            "type": "string",
+                            "example": "ChIJj25rEpmUwQ8ROH4YrabOvdc"
+                          },
+                          "pickupAddressLatitude": {
+                            "type": "number",
+                            "format": "float",
+                            "example": 5.4054499
+                          },
+                          "pickupAddressLongitude": {
+                            "type": "number",
+                            "format": "float",
+                            "example": -3.9947895
+                          },
+                          "pickupAddressLocality": {
+                            "type": "string",
+                            "example": "Cocody"
+                          },
+                          "pickupAddressName": {
+                            "type": "string",
+                            "example": "Street Côte d'Ivoire, Abidjan"
+                          },
+                          "pickupAddressLandMark": {
+                            "type": "string",
+                            "example": "Socofrais, angré pétro ivoire"
+                          },
+                          "pickupPhoneNumber": {
+                            "type": "string",
+                            "example": "+2250142092323"
+                          }
+                        }
+                      }
+                    },
+                    "status": {
+                      "type": "string",
+                      "example": "Shipped"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete Order",
+        "description": "Delete an order by ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "orderId",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Order deleted"
+          }
+        }
+      }
+    }
+  }
+}

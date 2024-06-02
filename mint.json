@@ -25,37 +25,20 @@
     "name": "Street CI",
     "url": "https://street.ci"
   },
+  "versions": ["Français", "English"],
+  "primaryTab": {
+    "name": "Home"
+  },
   "tabs": [
     {
       "name": "API Reference",
       "url": "api-reference"
     }
   ],
-  "anchors": [
-    {
-      "name": "Documentation",
-      "icon": "book-open-cover",
-      "url": "https://mintlify.com/docs"
-    },
-    {
-      "name": "Community",
-      "icon": "slack",
-      "url": "https://mintlify.com/community"
-    },
-    {
-      "name": "Blog",
-      "icon": "newspaper",
-      "url": "https://mintlify.com/blog"
-    }
-  ],
   "navigation": [
     {
       "group": "Get Started",
-      "pages": [
-        "introduction",
-        "quickstart",
-        "development"
-      ]
+      "pages": ["introduction", "quickstart", "development"]
     },
     {
       "group": "Essentials",
@@ -70,22 +53,36 @@
     },
     {
       "group": "API Documentation",
+      "pages": ["api-reference/introduction"]
+    },
+    {
+      "group": "Delivery Fee",
+      "pages": ["api-reference/order/endpoint/get-fee"]
+    },
+    {
+      "group": "Delivery Order",
       "pages": [
-        "api-reference/introduction"
+        "api-reference/order/endpoint/list-orders",
+        "api-reference/order/endpoint/create-order",
+        "api-reference/order/endpoint/get-order",
+        "api-reference/order/endpoint/update-order",
+        "api-reference/order/endpoint/delete-order"
       ]
     },
     {
-      "group": "Endpoint Examples",
+      "group": "Webhooks",
       "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/delete"
+        "api-reference/webhook/endpoint/list-webhooks",
+        "api-reference/webhook/endpoint/create-webhook",
+        "api-reference/webhook/endpoint/get-webhook",
+        "api-reference/webhook/endpoint/update-webhook",
+        "api-reference/webhook/endpoint/delete-webhook"
       ]
     }
   ],
   "footerSocials": {
-    "x": "https://x.com/mintlify",
-    "github": "https://github.com/mintlify",
-    "linkedin": "https://www.linkedin.com/company/mintsearch"
-  }
+    "linkedin": "https://www.linkedin.com/company/streetcotedivoire/",
+    "facebook": "https://web.facebook.com/streetcotedivoire"
+  },
+  "openapi": ["/api-reference/openapi.json"]
 }
