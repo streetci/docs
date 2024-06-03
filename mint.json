@@ -59,7 +59,6 @@
     {
       "group": "Delivery Order",
       "pages": [
-        "api-reference/order/endpoint/list-orders",
         "api-reference/order/endpoint/create-order",
         "api-reference/order/endpoint/get-order",
         "api-reference/order/endpoint/update-order",
