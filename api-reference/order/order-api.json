@@ -59,21 +59,31 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/400"
+                }
+              }
+            }
           }
         }
       }
     },
-    "/orders/{orderId}": {
+    "/orders/{orderReference}": {
       "get": {
         "summary": "Get Order",
-        "description": "Retrieve a specific order by ID",
+        "description": "Retrieve a specific order by reference",
         "parameters": [
           {
             "in": "path",
-            "name": "orderId",
+            "name": "orderReference",
             "required": true,
             "schema": {
-              "type": "integer"
+              "type": "string"
             }
           }
         ],
@@ -92,14 +102,14 @@
       },
       "put": {
         "summary": "Update Order",
-        "description": "Update an existing order by ID",
+        "description": "Update an existing order by reference",
         "parameters": [
           {
             "in": "path",
-            "name": "orderId",
+            "name": "orderReference",
             "required": true,
             "schema": {
-              "type": "integer"
+              "type": "string"
             }
           }
         ],
@@ -128,14 +138,14 @@
       },
       "delete": {
         "summary": "Delete Order",
-        "description": "Delete an order by ID",
+        "description": "Delete an order by reference",
         "parameters": [
           {
             "in": "path",
-            "name": "orderId",
+            "name": "orderReference",
             "required": true,
             "schema": {
-              "type": "integer"
+              "type": "string"
             }
           }
         ],
@@ -699,6 +709,16 @@
                 "status"
               ]
             }
+          }
+        }
+      },
+      "400": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "status": "integer",
+            "description": "HTTP status code",
+            "example": 1
           }
         }
       }
