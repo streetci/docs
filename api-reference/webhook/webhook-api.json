@@ -1,5 +1,5 @@
 {
-  "openapi": "3.0.1",
+  "openapi": "3.0.0",
   "info": {
     "title": "Webhook API",
     "description": "API for managing webhooks",
@@ -9,11 +9,10 @@
     {
       "url": "https://api.yourdomain.com/v1",
       "description": "Production server"
-    }
-  ],
-  "security": [
+    },
     {
-      "ApiKeyAuth": []
+      "url": "https://staging-api.yourdomain.com/v1",
+      "description": "Staging server"
     }
   ],
   "paths": {
@@ -21,6 +20,11 @@
       "get": {
         "summary": "List Webhooks",
         "description": "Retrieve a list of webhooks",
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ],
         "responses": {
           "200": {
             "description": "A list of webhooks",
@@ -29,21 +33,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "type": "object",
-                    "properties": {
-                      "id": {
-                        "type": "integer",
-                        "example": 1
-                      },
-                      "url": {
-                        "type": "string",
-                        "example": "https://example.com/webhook"
-                      },
-                      "event": {
-                        "type": "string",
-                        "example": "user.created"
-                      }
-                    }
+                    "$ref": "#/components/schemas/WebhookResponse"
                   }
                 }
               }
@@ -54,22 +44,17 @@
       "post": {
         "summary": "Create Webhook",
         "description": "Create a new webhook",
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "url": {
-                    "type": "string",
-                    "example": "https://example.com/webhook"
-                  },
-                  "event": {
-                    "type": "string",
-                    "example": "user.created"
-                  }
-                }
+                "$ref": "#/components/schemas/WebhookRequest"
               }
             }
           }
@@ -80,21 +65,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "integer",
-                      "example": 1
-                    },
-                    "url": {
-                      "type": "string",
-                      "example": "https://example.com/webhook"
-                    },
-                    "event": {
-                      "type": "string",
-                      "example": "user.created"
-                    }
-                  }
+                  "$ref": "#/components/schemas/WebhookResponse"
                 }
               }
             }
@@ -106,13 +77,18 @@
       "get": {
         "summary": "Get Webhook",
         "description": "Retrieve a specific webhook by ID",
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ],
         "parameters": [
           {
             "in": "path",
             "name": "webhookId",
             "required": true,
             "schema": {
-              "type": "integer"
+              "type": "string"
             }
           }
         ],
@@ -122,21 +98,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "integer",
-                      "example": 1
-                    },
-                    "url": {
-                      "type": "string",
-                      "example": "https://example.com/webhook"
-                    },
-                    "event": {
-                      "type": "string",
-                      "example": "user.created"
-                    }
-                  }
+                  "$ref": "#/components/schemas/WebhookResponse"
                 }
               }
             }
@@ -146,13 +108,18 @@
       "put": {
         "summary": "Update Webhook",
         "description": "Update an existing webhook by ID",
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ],
         "parameters": [
           {
             "in": "path",
             "name": "webhookId",
             "required": true,
             "schema": {
-              "type": "integer"
+              "type": "string"
             }
           }
         ],
@@ -161,17 +128,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "url": {
-                    "type": "string",
-                    "example": "https://example.com/webhook"
-                  },
-                  "event": {
-                    "type": "string",
-                    "example": "user.updated"
-                  }
-                }
+                "$ref": "#/components/schemas/WebhookRequest"
               }
             }
           }
@@ -182,21 +139,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "integer",
-                      "example": 1
-                    },
-                    "url": {
-                      "type": "string",
-                      "example": "https://example.com/webhook"
-                    },
-                    "event": {
-                      "type": "string",
-                      "example": "user.updated"
-                    }
-                  }
+                  "$ref": "#/components/schemas/WebhookResponse"
                 }
               }
             }
@@ -206,13 +149,18 @@
       "delete": {
         "summary": "Delete Webhook",
         "description": "Delete a webhook by ID",
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ],
         "parameters": [
           {
             "in": "path",
             "name": "webhookId",
             "required": true,
             "schema": {
-              "type": "integer"
+              "type": "string"
             }
           }
         ],
@@ -223,5 +171,93 @@
         }
       }
     }
-  }
+  },
+  "components": {
+    "schemas": {
+      "WebhookRequest": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "The target URL of the webhook",
+            "example": "https://website.com/my_webhook_target"
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Indicates if the webhook is active",
+            "example": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The creation timestamp of the webhook",
+            "example": "2020-10-15T12:09:49.355Z"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The last update timestamp of the webhook",
+            "example": "2020-10-15T12:09:49.355Z"
+          }
+        },
+        "required": [
+          "url",
+          "active",
+          "createdAt",
+          "updatedAt"
+        ]
+      },
+      "WebhookResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique identifier of the webhook",
+            "example": "5f8f8c44b54764421b7156e6"
+          },
+          "url": {
+            "type": "string",
+            "description": "The target URL of the webhook",
+            "example": "https://website.com/my_webhook_target"
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Indicates if the webhook is active",
+            "example": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The creation timestamp of the webhook",
+            "example": "2020-10-15T12:09:49.355Z"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The last update timestamp of the webhook",
+            "example": "2020-10-15T12:09:49.355Z"
+          }
+        },
+        "required": [
+          "id",
+          "url",
+          "active",
+          "createdAt",
+          "updatedAt"
+        ]
+      }
+    },
+    "securitySchemes": {
+      "apiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-API-Key"
+      }
+    }
+  },
+  "security": [
+    {
+      "apiKeyAuth": []
+    }
+  ]
 }

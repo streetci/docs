@@ -68,7 +68,6 @@
     {
       "group": "Webhooks",
       "pages": [
-        "api-reference/webhook/endpoint/list-webhooks",
         "api-reference/webhook/endpoint/create-webhook",
         "api-reference/webhook/endpoint/get-webhook",
         "api-reference/webhook/endpoint/update-webhook",
@@ -79,6 +78,5 @@
   "footerSocials": {
     "linkedin": "https://www.linkedin.com/company/streetcotedivoire/",
     "facebook": "https://web.facebook.com/streetcotedivoire"
-  },
-  "openapi": ["/api-reference/openapi.json"]
+  }
 }

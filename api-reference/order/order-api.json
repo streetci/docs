@@ -1,5 +1,5 @@
 {
-  "openapi": "3.0.0",
+  "openapi": "3.0.1",
   "info": {
     "title": "Order API",
     "description": "API for managing orders",
@@ -65,7 +65,37 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/400"
+                  "$ref": "#/components/schemas/BadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Unauthorized"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Forbidden"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "NotFound",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFound"
                 }
               }
             }
@@ -164,24 +194,18 @@
         "properties": {
           "orderReference": {
             "type": "string",
-            "description": "Unique identifier for the order",
+            "description": "Unique identifier for the order. It will allow you to modify or cancel the order if needed.",
             "example": "19410b7e-4e21-48d2-a309-21625d7d2f57"
           },
           "orderTotalAmount": {
             "type": "number",
             "format": "float",
-            "description": "Total amount for the order",
+            "description": "Total amount for the order, including delivery fee",
             "example": 100000.0
-          },
-          "deliveryFee": {
-            "type": "number",
-            "format": "float",
-            "description": "Fee for the delivery service",
-            "example": 2000.0
           },
           "cashOnDelivery": {
             "type": "boolean",
-            "description": "Indicates if the payment is to be collected on delivery",
+            "description": "Indicates if the total amount for the order is to be collected on delivery",
             "example": true
           },
           "items": {
@@ -192,7 +216,7 @@
               "properties": {
                 "itemReference": {
                   "type": "string",
-                  "description": "Unique identifier for the item",
+                  "description": "Unique identifier for the item. It will allow you to be notified via webhook for each event on a specific item. Collection completed, Delivery in progress, Delivery completed, Delivery failed (recipient absent, incorrect delivery information, parcel refused, etc.), etc.",
                   "example": "0da108ae-3f6c-41ba-ba3b-69062bf255e4"
                 },
                 "itemName": {
@@ -234,12 +258,12 @@
                 },
                 "storeName": {
                   "type": "string",
-                  "description": "Name of the store",
+                  "description": "Name of the merchant's store",
                   "example": "Abidjan Smartphone"
                 },
                 "pickupAddressPlaceId": {
                   "type": "string",
-                  "description": "Place ID of the pickup address",
+                  "description": "Place ID of the pickup address. This can be the unique ID of the store in your system or the `place_id` corresponding to the latlng (latitude and longitude) of the store. See [Reverse geocoding request and response](https://developers.google.com/maps/documentation/geocoding/requests-reverse-geocoding)",
                   "example": "ChIJj25rEpmUwQ8ROH4YrabOvdc"
                 },
                 "pickupAddressLatitude": {
@@ -289,7 +313,7 @@
                 "deliveryAddressLocality": {
                   "type": "string",
                   "description": "Locality of the delivery address",
-                  "example": "Le Plateau"
+                  "example": "Yopougon"
                 },
                 "deliveryAddressName": {
                   "type": "string",
@@ -327,7 +351,6 @@
                 "deliveryAddressLatitude",
                 "deliveryAddressLongitude",
                 "deliveryAddressLocality",
-                "deliveryAddressName",
                 "deliveryAddressLandMark",
                 "deliveryPhoneNumber"
               ]
@@ -472,7 +495,7 @@
                 "deliveryAddressLocality": {
                   "type": "string",
                   "description": "Locality of the delivery address",
-                  "example": "Le Plateau"
+                  "example": "Yopougon"
                 },
                 "deliveryAddressName": {
                   "type": "string",
@@ -528,32 +551,27 @@
       "OrderResponse": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "integer",
-            "description": "The unique identifier of the order",
-            "example": 1
-          },
           "orderReference": {
             "type": "string",
-            "description": "Unique identifier for the order",
+            "description": "Unique identifier for the order. It will allow you to modify or cancel the order if needed.",
             "example": "19410b7e-4e21-48d2-a309-21625d7d2f57"
           },
           "orderTotalAmount": {
             "type": "number",
             "format": "float",
-            "description": "Total amount for the order",
+            "description": "Total amount for the order, including delivery fee",
             "example": 100000.0
+          },
+          "cashOnDelivery": {
+            "type": "boolean",
+            "description": "Indicates if the total amount for the order is to be collected on delivery",
+            "example": false
           },
           "deliveryFee": {
             "type": "number",
             "format": "float",
             "description": "Fee for the delivery service",
             "example": 2000.0
-          },
-          "cashOnDelivery": {
-            "type": "boolean",
-            "description": "Indicates if the payment is to be collected on delivery",
-            "example": true
           },
           "items": {
             "type": "array",
@@ -563,7 +581,7 @@
               "properties": {
                 "itemReference": {
                   "type": "string",
-                  "description": "Unique identifier for the item",
+                  "description": "Unique identifier for the item. It will allow you to be notified via webhook for each event on a specific item. Collection completed, Delivery in progress, Delivery completed, Delivery failed (recipient absent, incorrect delivery information, parcel refused, etc.), etc.",
                   "example": "0da108ae-3f6c-41ba-ba3b-69062bf255e4"
                 },
                 "itemName": {
@@ -605,12 +623,12 @@
                 },
                 "storeName": {
                   "type": "string",
-                  "description": "Name of the store",
+                  "description": "Name of the merchant's store",
                   "example": "Abidjan Smartphone"
                 },
                 "pickupAddressPlaceId": {
                   "type": "string",
-                  "description": "Place ID of the pickup address",
+                  "description": "Place ID of the pickup address. This can be the unique ID of the store in your system or the `place_id` corresponding to the latlng (latitude and longitude) of the store. See [Reverse geocoding request and response](https://developers.google.com/maps/documentation/geocoding/requests-reverse-geocoding)",
                   "example": "ChIJj25rEpmUwQ8ROH4YrabOvdc"
                 },
                 "pickupAddressLatitude": {
@@ -660,7 +678,7 @@
                 "deliveryAddressLocality": {
                   "type": "string",
                   "description": "Locality of the delivery address",
-                  "example": "Le Plateau"
+                  "example": "Yopougon"
                 },
                 "deliveryAddressName": {
                   "type": "string",
@@ -676,11 +694,6 @@
                   "type": "string",
                   "description": "Phone number for delivery contact",
                   "example": "+2250546781941"
-                },
-                "status": {
-                  "type": "string",
-                  "description": "Status of the order",
-                  "example": "Pending"
                 }
               },
               "required": [
@@ -703,22 +716,85 @@
                 "deliveryAddressLatitude",
                 "deliveryAddressLongitude",
                 "deliveryAddressLocality",
-                "deliveryAddressName",
                 "deliveryAddressLandMark",
-                "deliveryPhoneNumber",
-                "status"
+                "deliveryPhoneNumber"
               ]
             }
           }
-        }
+        },
+        "required": [
+          "orderReference",
+          "orderTotalAmount",
+          "deliveryFee",
+          "cashOnDelivery",
+          "items"
+        ]
       },
-      "400": {
+      "BadRequest": {
         "type": "object",
         "properties": {
           "status": {
-            "status": "integer",
-            "description": "HTTP status code",
-            "example": 1
+            "type": "integer",
+            "example": 400
+          },
+          "error": {
+            "type": "string",
+            "example": "Bad Request"
+          },
+          "message": {
+            "type": "string",
+            "example": "pickupAddressLatitude' is required."
+          }
+        }
+      },
+      "Unauthorized": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "example": 401
+          },
+          "error": {
+            "type": "string",
+            "example": "Unauthorized"
+          },
+          "message": {
+            "type": "string",
+            "example": "Authentication is required. MerchantId or ApiKey is invalid or missing."
+          }
+        }
+      },
+      "Forbidden": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "example": 403
+          },
+          "error": {
+            "type": "string",
+            "example": "Not Found"
+          },
+          "message": {
+            "type": "string",
+            "example": "You do not have permission to access this resource."
+          }
+        }
+      },
+      "NotFound": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "example": 404
+          },
+          "error": {
+            "type": "string",
+            "example": "Not Found"
+          },
+          "message": {
+            "type": "string",
+            "example": "The requested resource could not be found."
           }
         }
       }
