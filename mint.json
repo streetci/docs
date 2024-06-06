@@ -25,7 +25,7 @@
     "name": "Street CI",
     "url": "https://street.ci"
   },
-  "versions": ["Français", "English"],
+  "versions": ["English"],
   "primaryTab": {
     "name": "Home"
   },
