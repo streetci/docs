@@ -1,0 +1,83 @@
+---
+title: Documentation
+description: Overview of how our Webhook works
+---
+
+A webhook is a callback function based on the HTTP protocol.
+
+It allows a remote API to establish event-oriented communication with our API.
+
+In simple terms, events can be subscribed to on our API, and whenever an event occurs on a parcel, the remote API will be called using the HTTP protocol.
+
+## How Our Webhook Works
+
+1. **Subscription to Events**: The remote API (client) subscribes to events on our API by providing a single callback URL where notifications for all events will be sent.
+2. **Event Triggering**: When an event occurs within our system, a `POST` request is sent to the client's callback URL with details about the event.
+3. **Payload**: The payload of the `POST` request contains information about the event, including the event type and relevant data associated with the event.
+4. **Response Handling**: The client’s server processes the incoming webhook payload and responds with a status code to acknowledge receipt.
+
+### Steps to Set Up a Webhook
+
+<Steps>
+  <Step title="Register a Webhook">
+    Provide the callback URL to subscribet to all the events on a parcel. See [Create
+    Webhook](/api-reference/webhook/endpoint/create-webhook)
+  </Step>
+  <Step title="Handle Incoming Requests">
+    Ensure your server can handle POST requests and process the incoming event
+    data.
+  </Step>
+  <Step title="Acknowledge Receipt">
+    Respond to the webhook POST request with a 2xx status code to acknowledge
+    successful receipt.
+  </Step>
+</Steps>
+
+## Event List
+
+Below is the list of events that will be notified to the callback:
+
+### Registration Events
+
+- `PENDING`: The parcel delivery order has been pre-recorded in our system and is awaiting additional information to validate the order.
+- `REGISTERED`: The parcel delivery order has been registered in our system.
+
+### Collection Events
+
+- `WAITING_FOR_COLLECTION`: The parcel is waiting to be collected.
+- `COLLECTION_IN_PROGRESS`: The collection of the parcel is in progress.
+- `COLLECTED`: The parcel has been collected successfully.
+- `COLLECTION_FAILED`: The parcel could not be collected for various reasons (e.g., sender absent, incorrect collection information, etc.). A new collection attempt will be made.
+
+### Delivery Events
+
+- `WAITING_FOR_DELIVERY`: The parcel is waiting to be delivered.
+- `DELIVERY_IN_PROGRESS`: The delivery of the parcel is in progress.
+- `DELIVERED`: The parcel has been delivered successfully.
+- `DELIVERY_FAILED`: The parcel could not be delivered for various reasons (recipient absent, incorrect delivery information, parcel refused, etc.). A new delivery attempt will be made.
+
+### Return Events
+
+- `WAITING_FOR_RETURN`: The parcel is waiting to be returned.
+- `RETURN_IN_PROGRESS`: The return of the parcel is in progress.
+- `RETURNED`: The parcel has been returned successfully.
+- `RETURN_FAILED`: The parcel could not be returned for various reasons (e.g., sender absent, incorrect collection information, etc.). A new return attempt will be made.
+
+### Other Events
+
+- `LOST`: The parcel is lost and cannot be delivered or returned.
+- `DAMAGED`: The parcel has suffered irreparable damage, making it unfit for delivery or return.
+- `CANCELED`: The parcel delivery order has been canceled.
+
+### Example Webhook Payload
+
+```json
+{
+  "event": "DELIVERED",
+  "data": {
+    "itemReference": "0da108ae-3f6c-41ba-ba3b-69062bf255e4",
+    "status": "DELIVERED",
+    "timestamp": "2024-06-06T12:00:00Z"
+  }
+}
+```

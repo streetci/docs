@@ -45,7 +45,11 @@
       "pages": ["introduction"]
     },
     {
-      "group": "Documentation",
+      "group": "Webhook",
+      "pages": ["documentation/webhook"]
+    },
+    {
+      "group": "HTTP Status Codes",
       "pages": ["documentation/http_status_codes"]
     },
     {

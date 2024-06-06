@@ -38,7 +38,7 @@
       },
       "post": {
         "summary": "Create Webhook",
-        "description": "Create a new webhook",
+        "description": "Provide a single callback URL where notifications for all events will be sent",
         "requestBody": {
           "required": true,
           "content": {
