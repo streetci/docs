@@ -31,6 +31,10 @@
   },
   "tabs": [
     {
+      "name": "Documentation",
+      "url": "documentation"
+    },
+    {
       "name": "API Reference",
       "url": "api-reference"
     }
@@ -41,7 +45,11 @@
       "pages": ["introduction"]
     },
     {
-      "group": "Delivery Order",
+      "group": "Documentation",
+      "pages": ["documentation/http_status_codes"]
+    },
+    {
+      "group": "Parcel Delivery Order",
       "pages": [
         "api-reference/order/endpoint/create-order",
         "api-reference/order/endpoint/get-order",

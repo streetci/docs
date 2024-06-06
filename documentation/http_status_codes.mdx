@@ -1,0 +1,117 @@
+---
+title: HTTP Status Codes
+description: This document provides a brief overview of some common HTTP status codes used in our API responses.
+---
+
+# 2xx Success
+
+## 200 OK
+
+### Description
+
+The request has succeeded. The information returned with the response is dependent on the method used in the request.
+
+### Use Cases
+
+- **GET**: The resource has been fetched and is transmitted in the message body.
+- **POST**: The resource describing the result of the action is transmitted in the message body.
+
+## 201 Created
+
+### Description
+
+The request has been fulfilled and has resulted in one or more new resources being created.
+
+### Use Cases
+
+- **POST**: Typically used when creating a new resource.
+- **PUT**: Can be used when creating or replacing a resource.
+
+# 4xx Client Error
+
+## 400 Bad Request
+
+### Description
+
+The server could not understand the request due to invalid syntax. The client should not repeat the request without modifications.
+
+### Use Cases
+
+- Invalid request format.
+- Missing required parameters.
+- Invalid data types.
+
+### Sample Response
+
+```json
+{
+  "status": 400,
+  "error": "Bad Request",
+  "message": "The field 'pickupAddressLatitude' is required."
+}
+```
+
+## 401 Unauthorized
+
+### Description
+
+The client must authenticate itself to get the requested response. It means the client has not provided credentials or has provided invalid credentials.
+
+### Use Cases
+
+- No authentication provided.
+- Invalid authentication token.
+- Authentication token expired.
+
+### Sample Response
+
+```json
+{
+  "status": 401,
+  "error": "Unauthorized",
+  "message": "Invalid or missing authentication token."
+}
+```
+
+## 403 Forbidden
+
+### Description
+
+The client does not have access rights to the content. This status is used when the client is not allowed to access or modify a resource.
+
+### Use Cases
+
+- The client does not have the necessary permissions for the resource.
+- Access to the resource is forbidden for some other reason.
+
+### Sample Response
+
+```json
+{
+  "status": 403,
+  "error": "Forbidden",
+  "message": "You do not have permission to access or modify this resource."
+}
+```
+
+## 404 Not Found
+
+### Description
+
+The server can not find the requested resource. This can also mean that the endpoint is valid but the resource itself does not exist.
+
+### Use Cases
+
+- Resource not found.
+- Invalid endpoint.
+- The resource has been deleted or never existed.
+
+### Sample Response
+
+```json
+{
+  "status": 404,
+  "error": "Not Found",
+  "message": "The requested resource could not be found."
+}
+```

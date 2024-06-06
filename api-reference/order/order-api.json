@@ -1,8 +1,8 @@
 {
-  "openapi": "3.0.1",
+  "openapi": "3.0.0",
   "info": {
     "title": "Order API",
-    "description": "API for managing orders",
+    "description": "API for parcel delivery orders",
     "version": "1.0.0"
   },
   "servers": [
