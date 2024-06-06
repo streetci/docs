@@ -20,11 +20,6 @@
       "get": {
         "summary": "List Webhooks",
         "description": "Retrieve a list of webhooks",
-        "security": [
-          {
-            "apiKeyAuth": []
-          }
-        ],
         "responses": {
           "200": {
             "description": "A list of webhooks",
@@ -44,11 +39,6 @@
       "post": {
         "summary": "Create Webhook",
         "description": "Create a new webhook",
-        "security": [
-          {
-            "apiKeyAuth": []
-          }
-        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -77,11 +67,6 @@
       "get": {
         "summary": "Get Webhook",
         "description": "Retrieve a specific webhook by ID",
-        "security": [
-          {
-            "apiKeyAuth": []
-          }
-        ],
         "parameters": [
           {
             "in": "path",
@@ -108,11 +93,6 @@
       "put": {
         "summary": "Update Webhook",
         "description": "Update an existing webhook by ID",
-        "security": [
-          {
-            "apiKeyAuth": []
-          }
-        ],
         "parameters": [
           {
             "in": "path",
@@ -149,11 +129,6 @@
       "delete": {
         "summary": "Delete Webhook",
         "description": "Delete a webhook by ID",
-        "security": [
-          {
-            "apiKeyAuth": []
-          }
-        ],
         "parameters": [
           {
             "in": "path",
@@ -248,16 +223,15 @@
       }
     },
     "securitySchemes": {
-      "apiKeyAuth": {
-        "type": "apiKey",
-        "in": "header",
-        "name": "X-API-Key"
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
       }
     }
   },
   "security": [
     {
-      "apiKeyAuth": []
+      "bearerAuth": []
     }
   ]
 }
