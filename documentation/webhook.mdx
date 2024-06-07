@@ -20,8 +20,8 @@ In simple terms, events can be subscribed to on our API, and whenever an event o
 
 <Steps>
   <Step title="Register a Webhook">
-    Provide the callback URL to subscribet to all the events on a parcel. See [Create
-    Webhook](/api-reference/webhook/endpoint/create-webhook)
+    Provide the callback URL to subscribet to all the events on a parcel. See
+    [Create Webhook](/api-reference/webhook/endpoint/create-webhook)
   </Step>
   <Step title="Handle Incoming Requests">
     Ensure your server can handle POST requests and process the incoming event
@@ -74,10 +74,41 @@ Below is the list of events that will be notified to the callback:
 ```json
 {
   "event": "DELIVERED",
-  "data": {
-    "itemReference": "0da108ae-3f6c-41ba-ba3b-69062bf255e4",
-    "status": "DELIVERED",
-    "timestamp": "2024-06-06T12:00:00Z"
+  "item": {
+    "reference": "0da108ae-3f6c-41ba-ba3b-69062bf255e4",
+    "name": "iPhone 15 Pro Max",
+    "weight": 0.187,
+    "size": "S",
+    "dimension": "L x l x H: 16cm x 30cm",
+    "quantity": 1,
+    "totalPrice": 700000.0,
+    "imageUrl": "https://placehold.co/720.png",
+    "store": {
+      "id": "42f22cc2-2467-11ef-9454-0242ac120002",
+      "name": "Abidjan Smartphone"
+    },
+    "pickupAddress": {
+      "placeId": "ChIJj25rEpmUwQ8ROH4YrabOvdc",
+      "latitude": 5.4054499,
+      "longitude": -3.9947895,
+      "locality": "Cocody",
+      "name": "Street Côte d'Ivoire, Abidjan",
+      "landmark": "Socofrais, angré pétro ivoire",
+      "phoneNumber": "+2250142092323"
+    },
+    "deliveryAddress": {
+      "latitude": 5.4054499,
+      "longitude": -3.9947895,
+      "locality": "Yopougon",
+      "name": "8X9P+PQW, Rue Montigny, Abidjan",
+      "landmark": "Nearest landmark",
+      "phoneNumber": "+2250546781941"
+    },
+    "status": {
+      "code": "DELIVERED",
+      "description": "The parcel has been delivered successfully",
+      "timestamp": "2024-06-06T12:00:00Z"
+    }
   }
 }
 ```

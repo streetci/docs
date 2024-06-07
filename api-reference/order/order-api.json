@@ -15,7 +15,7 @@
     "/orders": {
       "get": {
         "summary": "List Orders",
-        "description": "Retrieve a list of orders",
+        "description": "Retrieve a list of parcel delivery orders",
         "responses": {
           "200": {
             "description": "A list of orders",
@@ -33,8 +33,8 @@
         }
       },
       "post": {
-        "summary": "Create Order",
-        "description": "Create a new order",
+        "summary": "Create a delivery order",
+        "description": "Create a new delivery order",
         "requestBody": {
           "required": true,
           "content": {
@@ -47,51 +47,11 @@
         },
         "responses": {
           "201": {
-            "description": "Order created",
+            "description": "Delivery order created",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/OrderResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequest"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Unauthorized"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Forbidden"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "NotFound",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NotFound"
                 }
               }
             }
@@ -101,8 +61,8 @@
     },
     "/orders/{orderReference}": {
       "get": {
-        "summary": "Get Order",
-        "description": "Retrieve a specific order by reference",
+        "summary": "Get a delivery order",
+        "description": "Retrieve a specific delivery order by reference",
         "parameters": [
           {
             "in": "path",
@@ -115,7 +75,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Order details",
+            "description": "Delivery order details",
             "content": {
               "application/json": {
                 "schema": {
@@ -127,8 +87,8 @@
         }
       },
       "put": {
-        "summary": "Update Order",
-        "description": "Update an existing order by reference",
+        "summary": "Update a delivery order",
+        "description": "Update an existing delivery order by reference",
         "parameters": [
           {
             "in": "path",
@@ -151,7 +111,7 @@
         },
         "responses": {
           "200": {
-            "description": "Order updated",
+            "description": "Delivery order updated",
             "content": {
               "application/json": {
                 "schema": {
@@ -163,8 +123,8 @@
         }
       },
       "delete": {
-        "summary": "Delete Order",
-        "description": "Delete an order by reference",
+        "summary": "Delete a delivery order",
+        "description": "Delete a delivery order by reference",
         "parameters": [
           {
             "in": "path",
@@ -177,7 +137,7 @@
         ],
         "responses": {
           "204": {
-            "description": "Order deleted"
+            "description": "Delivery order deleted"
           }
         }
       }
@@ -197,189 +157,7 @@
             "type": "number",
             "format": "float",
             "description": "Total amount for the order, including delivery fee",
-            "example": 100000.0
-          },
-          "cashOnDelivery": {
-            "type": "boolean",
-            "description": "Indicates if the total amount for the order is to be collected on delivery",
-            "example": true
-          },
-          "items": {
-            "type": "array",
-            "description": "List of items in the order",
-            "items": {
-              "type": "object",
-              "properties": {
-                "itemReference": {
-                  "type": "string",
-                  "description": "Unique identifier for the item. It will allow you to be notified via webhook for each event on a specific item. Collection completed, Delivery in progress, Delivery completed, Delivery failed (recipient absent, incorrect delivery information, parcel refused, etc.), etc.",
-                  "example": "0da108ae-3f6c-41ba-ba3b-69062bf255e4"
-                },
-                "itemName": {
-                  "type": "string",
-                  "description": "Name of the item",
-                  "example": "iPhone 15 Pro Max"
-                },
-                "itemWeight": {
-                  "type": "number",
-                  "format": "float",
-                  "description": "Weight of the item",
-                  "example": 0.187
-                },
-                "itemSize": {
-                  "type": "string",
-                  "description": "Size of the item",
-                  "example": "S"
-                },
-                "itemDimension": {
-                  "type": "string",
-                  "description": "Dimensions of the item",
-                  "example": "L x l x H: 16cm x 30cm"
-                },
-                "itemQuantity": {
-                  "type": "integer",
-                  "description": "Quantity of the item",
-                  "example": 1
-                },
-                "itemTotalPrice": {
-                  "type": "number",
-                  "format": "float",
-                  "description": "Total price of the item",
-                  "example": 700000.0
-                },
-                "itemImageUrl": {
-                  "type": "string",
-                  "description": "Image URL of the item",
-                  "example": "https://placehold.co/720.png"
-                },
-                "storeName": {
-                  "type": "string",
-                  "description": "Name of the merchant's store",
-                  "example": "Abidjan Smartphone"
-                },
-                "pickupAddressPlaceId": {
-                  "type": "string",
-                  "description": "Place ID of the pickup address. This can be the unique ID of the store in your system or the `place_id` corresponding to the latlng (latitude and longitude) of the store. See [Reverse geocoding request and response](https://developers.google.com/maps/documentation/geocoding/requests-reverse-geocoding)",
-                  "example": "ChIJj25rEpmUwQ8ROH4YrabOvdc"
-                },
-                "pickupAddressLatitude": {
-                  "type": "number",
-                  "format": "float",
-                  "description": "Latitude of the pickup address",
-                  "example": 5.4054499
-                },
-                "pickupAddressLongitude": {
-                  "type": "number",
-                  "format": "float",
-                  "description": "Longitude of the pickup address",
-                  "example": -3.9947895
-                },
-                "pickupAddressLocality": {
-                  "type": "string",
-                  "description": "Locality of the pickup address",
-                  "example": "Cocody"
-                },
-                "pickupAddressName": {
-                  "type": "string",
-                  "description": "Name of the pickup address",
-                  "example": "Street Côte d'Ivoire, Abidjan"
-                },
-                "pickupAddressLandMark": {
-                  "type": "string",
-                  "description": "Landmark near the pickup address",
-                  "example": "Socofrais, angré pétro ivoire"
-                },
-                "pickupPhoneNumber": {
-                  "type": "string",
-                  "description": "Phone number for pickup contact",
-                  "example": "+2250142092323"
-                },
-                "deliveryAddressLatitude": {
-                  "type": "number",
-                  "format": "float",
-                  "description": "Latitude of the delivery address",
-                  "example": 5.4054499
-                },
-                "deliveryAddressLongitude": {
-                  "type": "number",
-                  "format": "float",
-                  "description": "Longitude of the delivery address",
-                  "example": -3.9947895
-                },
-                "deliveryAddressLocality": {
-                  "type": "string",
-                  "description": "Locality of the delivery address",
-                  "example": "Yopougon"
-                },
-                "deliveryAddressName": {
-                  "type": "string",
-                  "description": "Name of the delivery address",
-                  "example": "8X9P+PQW, Rue Montigny, Abidjan"
-                },
-                "deliveryAddressLandMark": {
-                  "type": "string",
-                  "description": "Landmark near the delivery address",
-                  "example": "Nearest landmark"
-                },
-                "deliveryPhoneNumber": {
-                  "type": "string",
-                  "description": "Phone number for delivery contact",
-                  "example": "+2250546781941"
-                }
-              },
-              "required": [
-                "itemReference",
-                "itemName",
-                "itemWeight",
-                "itemSize",
-                "itemDimension",
-                "itemQuantity",
-                "itemTotalPrice",
-                "itemImageUrl",
-                "storeName",
-                "pickupAddressPlaceId",
-                "pickupAddressLatitude",
-                "pickupAddressLongitude",
-                "pickupAddressLocality",
-                "pickupAddressName",
-                "pickupAddressLandMark",
-                "pickupPhoneNumber",
-                "deliveryAddressLatitude",
-                "deliveryAddressLongitude",
-                "deliveryAddressLocality",
-                "deliveryAddressLandMark",
-                "deliveryPhoneNumber"
-              ]
-            }
-          }
-        },
-        "required": [
-          "orderReference",
-          "orderTotalAmount",
-          "deliveryFee",
-          "cashOnDelivery",
-          "items"
-        ]
-      },
-      "UpdateOrderRequest": {
-        "type": "object",
-        "properties": {
-          "orderReference": {
-            "type": "string",
-            "description": "Unique identifier for the order",
-            "example": "19410b7e-4e21-48d2-a309-21625d7d2f57"
-          },
-          "orderTotalAmount": {
-            "type": "number",
-            "format": "float",
-            "description": "Total amount for the order",
-            "example": 100000.0
-          },
-          "deliveryFee": {
-            "type": "number",
-            "format": "float",
-            "description": "Fee for the delivery service",
-            "example": 2000.0
+            "example": 100000
           },
           "cashOnDelivery": {
             "type": "boolean",
@@ -392,155 +170,372 @@
             "items": {
               "type": "object",
               "properties": {
-                "itemReference": {
+                "reference": {
                   "type": "string",
-                  "description": "Unique identifier for the item",
+                  "description": "Unique identifier for the item. It will allow you to be notified via webhook for each event on the specific item",
                   "example": "0da108ae-3f6c-41ba-ba3b-69062bf255e4"
                 },
-                "itemName": {
+                "name": {
                   "type": "string",
                   "description": "Name of the item",
                   "example": "iPhone 15 Pro Max"
                 },
-                "itemWeight": {
+                "weight": {
                   "type": "number",
                   "format": "float",
                   "description": "Weight of the item",
                   "example": 0.187
                 },
-                "itemSize": {
+                "size": {
                   "type": "string",
                   "description": "Size of the item",
                   "example": "S"
                 },
-                "itemDimension": {
+                "dimension": {
                   "type": "string",
                   "description": "Dimensions of the item",
                   "example": "L x l x H: 16cm x 30cm"
                 },
-                "itemQuantity": {
+                "quantity": {
                   "type": "integer",
                   "description": "Quantity of the item",
                   "example": 1
                 },
-                "itemTotalPrice": {
+                "totalPrice": {
                   "type": "number",
                   "format": "float",
                   "description": "Total price of the item",
-                  "example": 700000.0
+                  "example": 700000
                 },
-                "itemImageUrl": {
+                "imageUrl": {
                   "type": "string",
                   "description": "Image URL of the item",
                   "example": "https://placehold.co/720.png"
                 },
-                "storeName": {
-                  "type": "string",
-                  "description": "Name of the store",
-                  "example": "Abidjan Smartphone"
+                "store": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "Unique identifier for the store",
+                      "example": "42f22cc2-2467-11ef-9454-0242ac120002"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "Name of the store",
+                      "example": "Abidjan Smartphone"
+                    }
+                  }
                 },
-                "pickupAddressPlaceId": {
-                  "type": "string",
-                  "description": "Place ID of the pickup address",
-                  "example": "ChIJj25rEpmUwQ8ROH4YrabOvdc"
+                "pickupAddress": {
+                  "type": "object",
+                  "properties": {
+                    "placeId": {
+                      "type": "string",
+                      "description": "Place ID of the pickup address",
+                      "example": "ChIJj25rEpmUwQ8ROH4YrabOvdc"
+                    },
+                    "latitude": {
+                      "type": "number",
+                      "format": "float",
+                      "description": "Latitude of the pickup address",
+                      "example": 5.4054499
+                    },
+                    "longitude": {
+                      "type": "number",
+                      "format": "float",
+                      "description": "Longitude of the pickup address",
+                      "example": -3.9947895
+                    },
+                    "locality": {
+                      "type": "string",
+                      "description": "Locality of the pickup address",
+                      "example": "Cocody"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "Name of the pickup address",
+                      "example": "Street Côte d'Ivoire, Abidjan"
+                    },
+                    "landmark": {
+                      "type": "string",
+                      "description": "Landmark near the pickup address",
+                      "example": "Socofrais, angré pétro ivoire"
+                    },
+                    "phoneNumber": {
+                      "type": "string",
+                      "description": "Phone number for pickup contact",
+                      "example": "+2250142092323"
+                    }
+                  }
                 },
-                "pickupAddressLatitude": {
-                  "type": "number",
-                  "format": "float",
-                  "description": "Latitude of the pickup address",
-                  "example": 5.4054499
+                "deliveryAddress": {
+                  "type": "object",
+                  "properties": {
+                    "latitude": {
+                      "type": "number",
+                      "format": "float",
+                      "description": "Latitude of the delivery address",
+                      "example": 5.4054499
+                    },
+                    "longitude": {
+                      "type": "number",
+                      "format": "float",
+                      "description": "Longitude of the delivery address",
+                      "example": -3.9947895
+                    },
+                    "locality": {
+                      "type": "string",
+                      "description": "Locality of the delivery address",
+                      "example": "Yopougon"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "Name of the delivery address",
+                      "example": "8X9P+PQW, Rue Montigny, Abidjan"
+                    },
+                    "landmark": {
+                      "type": "string",
+                      "description": "Landmark near the delivery address",
+                      "example": "Nearest landmark"
+                    },
+                    "phoneNumber": {
+                      "type": "string",
+                      "description": "Phone number for delivery contact",
+                      "example": "+2250546781941"
+                    }
+                  }
                 },
-                "pickupAddressLongitude": {
-                  "type": "number",
-                  "format": "float",
-                  "description": "Longitude of the pickup address",
-                  "example": -3.9947895
-                },
-                "pickupAddressLocality": {
-                  "type": "string",
-                  "description": "Locality of the pickup address",
-                  "example": "Cocody"
-                },
-                "pickupAddressName": {
-                  "type": "string",
-                  "description": "Name of the pickup address",
-                  "example": "Street Côte d'Ivoire, Abidjan"
-                },
-                "pickupAddressLandMark": {
-                  "type": "string",
-                  "description": "Landmark near the pickup address",
-                  "example": "Socofrais, angré pétro ivoire"
-                },
-                "pickupPhoneNumber": {
-                  "type": "string",
-                  "description": "Phone number for pickup contact",
-                  "example": "+2250142092323"
-                },
-                "deliveryAddressLatitude": {
-                  "type": "number",
-                  "format": "float",
-                  "description": "Latitude of the delivery address",
-                  "example": 5.4054499
-                },
-                "deliveryAddressLongitude": {
-                  "type": "number",
-                  "format": "float",
-                  "description": "Longitude of the delivery address",
-                  "example": -3.9947895
-                },
-                "deliveryAddressLocality": {
-                  "type": "string",
-                  "description": "Locality of the delivery address",
-                  "example": "Yopougon"
-                },
-                "deliveryAddressName": {
-                  "type": "string",
-                  "description": "Name of the delivery address",
-                  "example": "8X9P+PQW, Rue Montigny, Abidjan"
-                },
-                "deliveryAddressLandMark": {
-                  "type": "string",
-                  "description": "Landmark near the delivery address",
-                  "example": "Nearest landmark"
-                },
-                "deliveryPhoneNumber": {
-                  "type": "string",
-                  "description": "Phone number for delivery contact",
-                  "example": "+2250546781941"
+                "status": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "string",
+                      "description": "Status code of the item",
+                      "example": "DELIVERED"
+                    },
+                    "description": {
+                      "type": "string",
+                      "description": "Description of the status",
+                      "example": "The parcel has been delivered successfully"
+                    },
+                    "timestamp": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "Timestamp of the status",
+                      "example": "2024-06-06T12:00:00Z"
+                    }
+                  }
                 }
-              },
-              "required": [
-                "itemReference",
-                "itemName",
-                "itemWeight",
-                "itemSize",
-                "itemDimension",
-                "itemQuantity",
-                "itemTotalPrice",
-                "itemImageUrl",
-                "storeName",
-                "pickupAddressPlaceId",
-                "pickupAddressLatitude",
-                "pickupAddressLongitude",
-                "pickupAddressLocality",
-                "pickupAddressName",
-                "pickupAddressLandMark",
-                "pickupPhoneNumber",
-                "deliveryAddressLatitude",
-                "deliveryAddressLongitude",
-                "deliveryAddressLocality",
-                "deliveryAddressName",
-                "deliveryAddressLandMark",
-                "deliveryPhoneNumber"
-              ]
+              }
             }
           }
         },
         "required": [
           "orderReference",
           "orderTotalAmount",
-          "deliveryFee",
           "cashOnDelivery",
+          "deliveryFee",
+          "items"
+        ]
+      },
+      "UpdateOrderRequest": {
+        "type": "object",
+        "properties": {
+          "orderReference": {
+            "type": "string",
+            "description": "Unique identifier for the order. It will allow you to modify or cancel the order if needed.",
+            "example": "19410b7e-4e21-48d2-a309-21625d7d2f57"
+          },
+          "orderTotalAmount": {
+            "type": "number",
+            "format": "float",
+            "description": "Total amount for the order, including delivery fee",
+            "example": 100000
+          },
+          "cashOnDelivery": {
+            "type": "boolean",
+            "description": "Indicates if the payment is to be collected on delivery",
+            "example": true
+          },
+          "deliveryFee": {
+            "type": "number",
+            "format": "float",
+            "description": "Fee for the delivery service",
+            "example": 2000
+          },
+          "items": {
+            "type": "array",
+            "description": "List of items in the order",
+            "items": {
+              "type": "object",
+              "properties": {
+                "reference": {
+                  "type": "string",
+                  "description": "Unique identifier for the item. It will allow you to be notified via webhook for each event on the specific item",
+                  "example": "0da108ae-3f6c-41ba-ba3b-69062bf255e4"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Name of the item",
+                  "example": "iPhone 15 Pro Max"
+                },
+                "weight": {
+                  "type": "number",
+                  "format": "float",
+                  "description": "Weight of the item",
+                  "example": 0.187
+                },
+                "size": {
+                  "type": "string",
+                  "description": "Size of the item",
+                  "example": "S"
+                },
+                "dimension": {
+                  "type": "string",
+                  "description": "Dimensions of the item",
+                  "example": "L x l x H: 16cm x 30cm"
+                },
+                "quantity": {
+                  "type": "integer",
+                  "description": "Quantity of the item",
+                  "example": 1
+                },
+                "totalPrice": {
+                  "type": "number",
+                  "format": "float",
+                  "description": "Total price of the item",
+                  "example": 700000
+                },
+                "imageUrl": {
+                  "type": "string",
+                  "description": "Image URL of the item",
+                  "example": "https://placehold.co/720.png"
+                },
+                "store": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "Unique identifier for the store",
+                      "example": "42f22cc2-2467-11ef-9454-0242ac120002"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "Name of the store",
+                      "example": "Abidjan Smartphone"
+                    }
+                  }
+                },
+                "pickupAddress": {
+                  "type": "object",
+                  "properties": {
+                    "placeId": {
+                      "type": "string",
+                      "description": "Place ID of the pickup address",
+                      "example": "ChIJj25rEpmUwQ8ROH4YrabOvdc"
+                    },
+                    "latitude": {
+                      "type": "number",
+                      "format": "float",
+                      "description": "Latitude of the pickup address",
+                      "example": 5.4054499
+                    },
+                    "longitude": {
+                      "type": "number",
+                      "format": "float",
+                      "description": "Longitude of the pickup address",
+                      "example": -3.9947895
+                    },
+                    "locality": {
+                      "type": "string",
+                      "description": "Locality of the pickup address",
+                      "example": "Cocody"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "Name of the pickup address",
+                      "example": "Street Côte d'Ivoire, Abidjan"
+                    },
+                    "landmark": {
+                      "type": "string",
+                      "description": "Landmark near the pickup address",
+                      "example": "Socofrais, angré pétro ivoire"
+                    },
+                    "phoneNumber": {
+                      "type": "string",
+                      "description": "Phone number for pickup contact",
+                      "example": "+2250142092323"
+                    }
+                  }
+                },
+                "deliveryAddress": {
+                  "type": "object",
+                  "properties": {
+                    "latitude": {
+                      "type": "number",
+                      "format": "float",
+                      "description": "Latitude of the delivery address",
+                      "example": 5.4054499
+                    },
+                    "longitude": {
+                      "type": "number",
+                      "format": "float",
+                      "description": "Longitude of the delivery address",
+                      "example": -3.9947895
+                    },
+                    "locality": {
+                      "type": "string",
+                      "description": "Locality of the delivery address",
+                      "example": "Yopougon"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "Name of the delivery address",
+                      "example": "8X9P+PQW, Rue Montigny, Abidjan"
+                    },
+                    "landmark": {
+                      "type": "string",
+                      "description": "Landmark near the delivery address",
+                      "example": "Nearest landmark"
+                    },
+                    "phoneNumber": {
+                      "type": "string",
+                      "description": "Phone number for delivery contact",
+                      "example": "+2250546781941"
+                    }
+                  }
+                },
+                "status": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "string",
+                      "description": "Status code of the item",
+                      "example": "DELIVERED"
+                    },
+                    "description": {
+                      "type": "string",
+                      "description": "Description of the status",
+                      "example": "The parcel has been delivered successfully"
+                    },
+                    "timestamp": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "Timestamp of the status",
+                      "example": "2024-06-06T12:00:00Z"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "required": [
+          "orderReference",
+          "orderTotalAmount",
+          "cashOnDelivery",
+          "deliveryFee",
           "items"
         ]
       },
@@ -556,18 +551,18 @@
             "type": "number",
             "format": "float",
             "description": "Total amount for the order, including delivery fee",
-            "example": 100000.0
+            "example": 100000
           },
           "cashOnDelivery": {
             "type": "boolean",
-            "description": "Indicates if the total amount for the order is to be collected on delivery",
-            "example": false
+            "description": "Indicates if the payment is to be collected on delivery",
+            "example": true
           },
           "deliveryFee": {
             "type": "number",
             "format": "float",
             "description": "Fee for the delivery service",
-            "example": 2000.0
+            "example": 2000
           },
           "items": {
             "type": "array",
@@ -575,224 +570,174 @@
             "items": {
               "type": "object",
               "properties": {
-                "itemReference": {
+                "reference": {
                   "type": "string",
-                  "description": "Unique identifier for the item. It will allow you to be notified via webhook for each event on a specific item. Collection completed, Delivery in progress, Delivery completed, Delivery failed (recipient absent, incorrect delivery information, parcel refused, etc.), etc.",
+                  "description": "Unique identifier for the item. It will allow you to be notified via webhook for each event on the specific item",
                   "example": "0da108ae-3f6c-41ba-ba3b-69062bf255e4"
                 },
-                "itemName": {
+                "name": {
                   "type": "string",
                   "description": "Name of the item",
                   "example": "iPhone 15 Pro Max"
                 },
-                "itemWeight": {
+                "weight": {
                   "type": "number",
                   "format": "float",
                   "description": "Weight of the item",
                   "example": 0.187
                 },
-                "itemSize": {
+                "size": {
                   "type": "string",
                   "description": "Size of the item",
                   "example": "S"
                 },
-                "itemDimension": {
+                "dimension": {
                   "type": "string",
                   "description": "Dimensions of the item",
                   "example": "L x l x H: 16cm x 30cm"
                 },
-                "itemQuantity": {
+                "quantity": {
                   "type": "integer",
                   "description": "Quantity of the item",
                   "example": 1
                 },
-                "itemTotalPrice": {
+                "totalPrice": {
                   "type": "number",
                   "format": "float",
                   "description": "Total price of the item",
-                  "example": 700000.0
+                  "example": 700000
                 },
-                "itemImageUrl": {
+                "imageUrl": {
                   "type": "string",
                   "description": "Image URL of the item",
                   "example": "https://placehold.co/720.png"
                 },
-                "storeName": {
-                  "type": "string",
-                  "description": "Name of the merchant's store",
-                  "example": "Abidjan Smartphone"
+                "store": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "Unique identifier for the store",
+                      "example": "42f22cc2-2467-11ef-9454-0242ac120002"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "Name of the store",
+                      "example": "Abidjan Smartphone"
+                    }
+                  }
                 },
-                "pickupAddressPlaceId": {
-                  "type": "string",
-                  "description": "Place ID of the pickup address. This can be the unique ID of the store in your system or the `place_id` corresponding to the latlng (latitude and longitude) of the store. See [Reverse geocoding request and response](https://developers.google.com/maps/documentation/geocoding/requests-reverse-geocoding)",
-                  "example": "ChIJj25rEpmUwQ8ROH4YrabOvdc"
+                "pickupAddress": {
+                  "type": "object",
+                  "properties": {
+                    "placeId": {
+                      "type": "string",
+                      "description": "Place ID of the pickup address",
+                      "example": "ChIJj25rEpmUwQ8ROH4YrabOvdc"
+                    },
+                    "latitude": {
+                      "type": "number",
+                      "format": "float",
+                      "description": "Latitude of the pickup address",
+                      "example": 5.4054499
+                    },
+                    "longitude": {
+                      "type": "number",
+                      "format": "float",
+                      "description": "Longitude of the pickup address",
+                      "example": -3.9947895
+                    },
+                    "locality": {
+                      "type": "string",
+                      "description": "Locality of the pickup address",
+                      "example": "Cocody"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "Name of the pickup address",
+                      "example": "Street Côte d'Ivoire, Abidjan"
+                    },
+                    "landmark": {
+                      "type": "string",
+                      "description": "Landmark near the pickup address",
+                      "example": "Socofrais, angré pétro ivoire"
+                    },
+                    "phoneNumber": {
+                      "type": "string",
+                      "description": "Phone number for pickup contact",
+                      "example": "+2250142092323"
+                    }
+                  }
                 },
-                "pickupAddressLatitude": {
-                  "type": "number",
-                  "format": "float",
-                  "description": "Latitude of the pickup address",
-                  "example": 5.4054499
+                "deliveryAddress": {
+                  "type": "object",
+                  "properties": {
+                    "latitude": {
+                      "type": "number",
+                      "format": "float",
+                      "description": "Latitude of the delivery address",
+                      "example": 5.4054499
+                    },
+                    "longitude": {
+                      "type": "number",
+                      "format": "float",
+                      "description": "Longitude of the delivery address",
+                      "example": -3.9947895
+                    },
+                    "locality": {
+                      "type": "string",
+                      "description": "Locality of the delivery address",
+                      "example": "Yopougon"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "Name of the delivery address",
+                      "example": "8X9P+PQW, Rue Montigny, Abidjan"
+                    },
+                    "landmark": {
+                      "type": "string",
+                      "description": "Landmark near the delivery address",
+                      "example": "Nearest landmark"
+                    },
+                    "phoneNumber": {
+                      "type": "string",
+                      "description": "Phone number for delivery contact",
+                      "example": "+2250546781941"
+                    }
+                  }
                 },
-                "pickupAddressLongitude": {
-                  "type": "number",
-                  "format": "float",
-                  "description": "Longitude of the pickup address",
-                  "example": -3.9947895
-                },
-                "pickupAddressLocality": {
-                  "type": "string",
-                  "description": "Locality of the pickup address",
-                  "example": "Cocody"
-                },
-                "pickupAddressName": {
-                  "type": "string",
-                  "description": "Name of the pickup address",
-                  "example": "Street Côte d'Ivoire, Abidjan"
-                },
-                "pickupAddressLandMark": {
-                  "type": "string",
-                  "description": "Landmark near the pickup address",
-                  "example": "Socofrais, angré pétro ivoire"
-                },
-                "pickupPhoneNumber": {
-                  "type": "string",
-                  "description": "Phone number for pickup contact",
-                  "example": "+2250142092323"
-                },
-                "deliveryAddressLatitude": {
-                  "type": "number",
-                  "format": "float",
-                  "description": "Latitude of the delivery address",
-                  "example": 5.4054499
-                },
-                "deliveryAddressLongitude": {
-                  "type": "number",
-                  "format": "float",
-                  "description": "Longitude of the delivery address",
-                  "example": -3.9947895
-                },
-                "deliveryAddressLocality": {
-                  "type": "string",
-                  "description": "Locality of the delivery address",
-                  "example": "Yopougon"
-                },
-                "deliveryAddressName": {
-                  "type": "string",
-                  "description": "Name of the delivery address",
-                  "example": "8X9P+PQW, Rue Montigny, Abidjan"
-                },
-                "deliveryAddressLandMark": {
-                  "type": "string",
-                  "description": "Landmark near the delivery address",
-                  "example": "Nearest landmark"
-                },
-                "deliveryPhoneNumber": {
-                  "type": "string",
-                  "description": "Phone number for delivery contact",
-                  "example": "+2250546781941"
+                "status": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "string",
+                      "description": "Status code of the item",
+                      "example": "DELIVERED"
+                    },
+                    "description": {
+                      "type": "string",
+                      "description": "Description of the status",
+                      "example": "The parcel has been delivered successfully"
+                    },
+                    "timestamp": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "Timestamp of the status",
+                      "example": "2024-06-06T12:00:00Z"
+                    }
+                  }
                 }
-              },
-              "required": [
-                "itemReference",
-                "itemName",
-                "itemWeight",
-                "itemSize",
-                "itemDimension",
-                "itemQuantity",
-                "itemTotalPrice",
-                "itemImageUrl",
-                "storeName",
-                "pickupAddressPlaceId",
-                "pickupAddressLatitude",
-                "pickupAddressLongitude",
-                "pickupAddressLocality",
-                "pickupAddressName",
-                "pickupAddressLandMark",
-                "pickupPhoneNumber",
-                "deliveryAddressLatitude",
-                "deliveryAddressLongitude",
-                "deliveryAddressLocality",
-                "deliveryAddressLandMark",
-                "deliveryPhoneNumber"
-              ]
+              }
             }
           }
         },
         "required": [
           "orderReference",
           "orderTotalAmount",
-          "deliveryFee",
           "cashOnDelivery",
+          "deliveryFee",
           "items"
         ]
-      },
-      "BadRequest": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "integer",
-            "example": 400
-          },
-          "error": {
-            "type": "string",
-            "example": "Bad Request"
-          },
-          "message": {
-            "type": "string",
-            "example": "pickupAddressLatitude' is required."
-          }
-        }
-      },
-      "Unauthorized": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "integer",
-            "example": 401
-          },
-          "error": {
-            "type": "string",
-            "example": "Unauthorized"
-          },
-          "message": {
-            "type": "string",
-            "example": "Authentication is required. MerchantId or ApiKey is invalid or missing."
-          }
-        }
-      },
-      "Forbidden": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "integer",
-            "example": 403
-          },
-          "error": {
-            "type": "string",
-            "example": "Not Found"
-          },
-          "message": {
-            "type": "string",
-            "example": "You do not have permission to access this resource."
-          }
-        }
-      },
-      "NotFound": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "integer",
-            "example": 404
-          },
-          "error": {
-            "type": "string",
-            "example": "Not Found"
-          },
-          "message": {
-            "type": "string",
-            "example": "The requested resource could not be found."
-          }
-        }
       }
     },
     "securitySchemes": {
