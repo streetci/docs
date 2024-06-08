@@ -429,7 +429,7 @@
               "properties": {
                 "reference": {
                   "type": "string",
-                  "description": "Unique identifier for the item",
+                  "description": "Unique identifier for the order item. This is a custom field that you can fill with any reference that identifies the order item in your system.",
                   "example": "0da108ae-3f6c-41ba-ba3b-69062bf255e4"
                 },
                 "name": {
