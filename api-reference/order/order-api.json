@@ -1,18 +1,18 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "Delivery Order API",
+    "title": "Street Delivery Order API",
     "description": "API for managing delivery orders",
     "version": "1.0.0"
   },
   "servers": [
     {
-      "url": "https://api.yourdomain.com/v1",
+      "url": "https://api.street.ci/ecommerce",
       "description": "Production server"
     },
     {
-      "url": "https://staging-api.yourdomain.com/v1",
-      "description": "Staging server"
+      "url": "https://devapi.street.ci/ecommerce",
+      "description": "Test server"
     }
   ],
   "paths": {
@@ -44,7 +44,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateDeliveryOrderRequest"
+                "$ref": "#/components/schemas/DeliveryOrderRequest"
               }
             }
           }
@@ -71,6 +71,7 @@
           {
             "in": "path",
             "name": "orderReference",
+            "description": "Unique identifier of the order. This is the order reference that you provided when creating the delivery order.",
             "required": true,
             "schema": {
               "type": "string"
@@ -97,6 +98,7 @@
           {
             "in": "path",
             "name": "orderReference",
+            "description": "Unique identifier of the order. This is the order reference that you provided when creating the delivery order.",
             "required": true,
             "schema": {
               "type": "string"
@@ -108,7 +110,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateDeliveryOrderRequest"
+                "$ref": "#/components/schemas/DeliveryOrderRequest"
               }
             }
           }
@@ -133,6 +135,7 @@
           {
             "in": "path",
             "name": "orderReference",
+            "description": "Unique identifier of the order. This is the order reference that you provided when creating the delivery order.",
             "required": true,
             "schema": {
               "type": "string"
@@ -149,25 +152,19 @@
   },
   "components": {
     "schemas": {
-      "CreateDeliveryOrderRequest": {
+      "DeliveryOrderRequest": {
         "type": "object",
         "properties": {
           "orderReference": {
             "type": "string",
-            "description": "Unique identifier for the delivery order",
+            "description": "Unique identifier for the order. This is a custom field that you can fill with any reference that identifies the order in your system.",
             "example": "19410b7e-4e21-48d2-a309-21625d7d2f57"
           },
           "totalAmountToCollect": {
             "type": "number",
             "format": "float",
-            "description": "Total amount to collect from the client",
+            "description": "Total amount to collect from the client, including delivery service fee, in case of cash on delivery",
             "example": 700000.0
-          },
-          "deliveryFee": {
-            "type": "number",
-            "format": "float",
-            "description": "Fee for the delivery service",
-            "example": 2000
           },
           "deliveryAddress": {
             "type": "object",
@@ -222,7 +219,7 @@
               "properties": {
                 "reference": {
                   "type": "string",
-                  "description": "Unique identifier for the item",
+                  "description": "Unique identifier for the order item. This is a custom field that you can fill with any reference that identifies the order item in your system.",
                   "example": "0da108ae-3f6c-41ba-ba3b-69062bf255e4"
                 },
                 "name": {
@@ -333,225 +330,7 @@
                       "example": "2024-06-06T12:00:00Z"
                     }
                   },
-                  "required": [
-                    "code",
-                    "description",
-                    "timestamp"
-                  ]
-                }
-              },
-              "required": [
-                "reference",
-                "name",
-                "weight",
-                "size",
-                "dimension",
-                "quantity",
-                "amountToCollect",
-                "imageUrl",
-                "pickupAddress",
-                "status"
-              ]
-            }
-          }
-        },
-        "required": [
-          "orderReference",
-          "totalAmountToCollect",
-          "deliveryFee",
-          "deliveryAddress",
-          "items"
-        ]
-      },
-      "UpdateDeliveryOrderRequest": {
-        "type": "object",
-        "properties": {
-          "orderReference": {
-            "type": "string",
-            "description": "Unique identifier for the delivery order",
-            "example": "19410b7e-4e21-48d2-a309-21625d7d2f57"
-          },
-          "totalAmountToCollect": {
-            "type": "number",
-            "format": "float",
-            "description": "Total amount to collect from the client",
-            "example": 700000.0
-          },
-          "deliveryFee": {
-            "type": "number",
-            "format": "float",
-            "description": "Fee for the delivery service",
-            "example": 2000
-          },
-          "deliveryAddress": {
-            "type": "object",
-            "properties": {
-              "latitude": {
-                "type": "number",
-                "format": "float",
-                "description": "Latitude of the delivery address",
-                "example": 5.4054499
-              },
-              "longitude": {
-                "type": "number",
-                "format": "float",
-                "description": "Longitude of the delivery address",
-                "example": -3.9947895
-              },
-              "city": {
-                "type": "string",
-                "description": "City of the delivery address",
-                "example": "Cocody"
-              },
-              "name": {
-                "type": "string",
-                "description": "Name of the delivery address",
-                "example": "Street Côte d'Ivoire, Angré pétro, Abidjan"
-              },
-              "landmark": {
-                "type": "string",
-                "description": "Landmark near the delivery address",
-                "example": "Socofrais"
-              },
-              "phoneNumber": {
-                "type": "string",
-                "description": "Phone number to call at delivery",
-                "example": "+2250546781941"
-              }
-            },
-            "required": [
-              "latitude",
-              "longitude",
-              "city",
-              "name",
-              "landmark",
-              "phoneNumber"
-            ]
-          },
-          "items": {
-            "type": "array",
-            "description": "List of items in the delivery order",
-            "items": {
-              "type": "object",
-              "properties": {
-                "reference": {
-                  "type": "string",
-                  "description": "Unique identifier for the item",
-                  "example": "0da108ae-3f6c-41ba-ba3b-69062bf255e4"
-                },
-                "name": {
-                  "type": "string",
-                  "description": "Name of the item",
-                  "example": "iPhone 15 Pro Max"
-                },
-                "weight": {
-                  "type": "number",
-                  "format": "float",
-                  "description": "Weight of the item",
-                  "example": 0.187
-                },
-                "size": {
-                  "type": "string",
-                  "description": "Size of the item",
-                  "example": "S"
-                },
-                "dimension": {
-                  "type": "string",
-                  "description": "Dimensions of the item",
-                  "example": "L x l x H: 16cm x 30cm"
-                },
-                "quantity": {
-                  "type": "integer",
-                  "description": "Quantity of the item",
-                  "example": 1
-                },
-                "amountToCollect": {
-                  "type": "number",
-                  "format": "float",
-                  "description": "Amount to collect for the item in case of cash on delivery",
-                  "example": 500000
-                },
-                "imageUrl": {
-                  "type": "string",
-                  "description": "Image URL of the item",
-                  "example": "https://placehold.co/720.png"
-                },
-                "pickupAddress": {
-                  "type": "object",
-                  "properties": {
-                    "placeId": {
-                      "type": "string",
-                      "description": "Place ID of the pickup address",
-                      "example": "ChIJj25rEpmUwQ8ROH4YrabOvdc"
-                    },
-                    "latitude": {
-                      "type": "number",
-                      "format": "float",
-                      "description": "Latitude of the pickup address",
-                      "example": 5.4054499
-                    },
-                    "longitude": {
-                      "type": "number",
-                      "format": "float",
-                      "description": "Longitude of the pickup address",
-                      "example": -3.9947895
-                    },
-                    "city": {
-                      "type": "string",
-                      "description": "City of the pickup address",
-                      "example": "Cocody"
-                    },
-                    "name": {
-                      "type": "string",
-                      "description": "Name of the pickup address",
-                      "example": "Apple store, Abidjan"
-                    },
-                    "landmark": {
-                      "type": "string",
-                      "description": "Landmark near the pickup address",
-                      "example": "Socofrais, angré pétro ivoire"
-                    },
-                    "phoneNumber": {
-                      "type": "string",
-                      "description": "Phone number to call at pickup",
-                      "example": "+2250142092323"
-                    }
-                  },
-                  "required": [
-                    "placeId",
-                    "latitude",
-                    "longitude",
-                    "city",
-                    "name",
-                    "landmark",
-                    "phoneNumber"
-                  ]
-                },
-                "status": {
-                  "type": "object",
-                  "properties": {
-                    "code": {
-                      "type": "string",
-                      "description": "Status code of the item",
-                      "example": "REGISTERED"
-                    },
-                    "description": {
-                      "type": "string",
-                      "description": "Description of the status",
-                      "example": "The delivery order has been registered"
-                    },
-                    "timestamp": {
-                      "type": "string",
-                      "format": "date-time",
-                      "description": "Timestamp of the status",
-                      "example": "2024-06-06T12:00:00Z"
-                    }
-                  },
-                  "required": [
-                    "code",
-                    "description",
-                    "timestamp"
-                  ]
+                  "required": ["code", "description", "timestamp"]
                 }
               },
               "required": [
@@ -582,13 +361,13 @@
         "properties": {
           "orderReference": {
             "type": "string",
-            "description": "Unique identifier for the delivery order",
+            "description": "Unique identifier for the order. This is a custom field that you can fill with any reference that identifies the order in your system.",
             "example": "19410b7e-4e21-48d2-a309-21625d7d2f57"
           },
           "totalAmountToCollect": {
             "type": "number",
             "format": "float",
-            "description": "Total amount to collect from the client",
+            "description": "Total amount to collect from the client, including delivery service fee, in case of cash on delivery",
             "example": 700000.0
           },
           "deliveryFee": {
@@ -761,11 +540,7 @@
                       "example": "2024-06-06T12:00:00Z"
                     }
                   },
-                  "required": [
-                    "code",
-                    "description",
-                    "timestamp"
-                  ]
+                  "required": ["code", "description", "timestamp"]
                 }
               },
               "required": [
@@ -791,6 +566,17 @@
           "items"
         ]
       }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
     }
-  }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
 }

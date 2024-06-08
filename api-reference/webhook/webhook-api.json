@@ -9,6 +9,10 @@
     {
       "url": "https://api.street.ci/ecommerce",
       "description": "Production server"
+    },
+    {
+      "url": "https://devapi.street.ci/ecommerce",
+      "description": "Test server"
     }
   ],
   "paths": {
@@ -150,7 +154,7 @@
         "properties": {
           "url": {
             "type": "string",
-            "description": "The target URL of the webhook",
+            "description": "Fully qualified url of the webhook endpoint",
             "example": "https://website.com/my_webhook_target"
           },
           "active": {
@@ -188,7 +192,7 @@
           },
           "url": {
             "type": "string",
-            "description": "The target URL of the webhook",
+            "description": "Fully qualified url of the webhook endpoint",
             "example": "https://website.com/my_webhook_target"
           },
           "active": {
