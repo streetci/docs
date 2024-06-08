@@ -53,7 +53,7 @@
       "pages": ["documentation/http_status_codes"]
     },
     {
-      "group": "Parcel Delivery Order",
+      "group": "Delivery Orders",
       "pages": [
         "api-reference/order/endpoint/create-order",
         "api-reference/order/endpoint/get-order",
