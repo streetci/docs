@@ -28,7 +28,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/DeliveryOrderResponse"
+                    "$ref": "#/components/schemas/OrderResponse"
                   }
                 }
               }
@@ -121,7 +121,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DeliveryOrderResponse"
+                  "$ref": "#/components/schemas/OrderResponse"
                 }
               }
             }
