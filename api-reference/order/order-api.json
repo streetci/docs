@@ -203,10 +203,7 @@
               }
             },
             "required": [
-              "latitude",
-              "longitude",
               "city",
-              "name",
               "landmark",
               "phoneNumber"
             ]
@@ -219,7 +216,7 @@
               "properties": {
                 "reference": {
                   "type": "string",
-                  "description": "Unique identifier for the order item. This is a custom field that you can fill with any reference that identifies the order item in your system.",
+                  "description": "Unique identifier for the order item. This is a custom field that you can fill with any reference that identifies the order item in your system. It will be used to send webhook events to your system when an event occurs in the parcel delivery process.",
                   "example": "0da108ae-3f6c-41ba-ba3b-69062bf255e4"
                 },
                 "name": {
@@ -264,7 +261,7 @@
                   "properties": {
                     "placeId": {
                       "type": "string",
-                      "description": "Place ID of the pickup address",
+                      "description": "Place ID of the pickup address. It is recommended to use the merchant ID in your system or the **place_id** corresponding to the latlng (latitude, longitude) - See [Google Geocoding API](https://developers.google.com/maps/documentation/geocoding/requests-reverse-geocoding)",
                       "example": "ChIJj25rEpmUwQ8ROH4YrabOvdc"
                     },
                     "latitude": {
@@ -309,41 +306,16 @@
                     "landmark",
                     "phoneNumber"
                   ]
-                },
-                "status": {
-                  "type": "object",
-                  "properties": {
-                    "code": {
-                      "type": "string",
-                      "description": "Status code of the item",
-                      "example": "REGISTERED"
-                    },
-                    "description": {
-                      "type": "string",
-                      "description": "Description of the status",
-                      "example": "The delivery order has been registered"
-                    },
-                    "timestamp": {
-                      "type": "string",
-                      "format": "date-time",
-                      "description": "Timestamp of the status",
-                      "example": "2024-06-06T12:00:00Z"
-                    }
-                  },
-                  "required": ["code", "description", "timestamp"]
                 }
               },
               "required": [
                 "reference",
                 "name",
-                "weight",
                 "size",
-                "dimension",
                 "quantity",
                 "amountToCollect",
                 "imageUrl",
-                "pickupAddress",
-                "status"
+                "pickupAddress"
               ]
             }
           }
@@ -429,7 +401,7 @@
               "properties": {
                 "reference": {
                   "type": "string",
-                  "description": "Unique identifier for the order item. This is a custom field that you can fill with any reference that identifies the order item in your system.",
+                  "description": "Unique identifier for the order item. This is a custom field that you can fill with any reference that identifies the order item in your system. It will be used to send webhook events to your system when an event occurs in the parcel delivery process.",
                   "example": "0da108ae-3f6c-41ba-ba3b-69062bf255e4"
                 },
                 "name": {
@@ -445,7 +417,7 @@
                 },
                 "size": {
                   "type": "string",
-                  "description": "Size of the item",
+                  "description": "Size of the item. Available options: `S`, `M`, `L`, `XL`, `XXL`",
                   "example": "S"
                 },
                 "dimension": {
@@ -474,7 +446,7 @@
                   "properties": {
                     "placeId": {
                       "type": "string",
-                      "description": "Place ID of the pickup address",
+                      "description": "Place ID of the pickup address. It is recommended to use the merchant ID in your system or the **place_id** corresponding to the latlng (latitude, longitude) - See [Google Geocoding API](https://developers.google.com/maps/documentation/geocoding/requests-reverse-geocoding)",
                       "example": "ChIJj25rEpmUwQ8ROH4YrabOvdc"
                     },
                     "latitude": {
@@ -525,7 +497,7 @@
                   "properties": {
                     "code": {
                       "type": "string",
-                      "description": "Status code of the item",
+                      "description": "Status code of the item. See [Parcel Status Codes](/documentation/parcel_status_codes)",
                       "example": "REGISTERED"
                     },
                     "description": {
@@ -546,9 +518,7 @@
               "required": [
                 "reference",
                 "name",
-                "weight",
                 "size",
-                "dimension",
                 "quantity",
                 "amountToCollect",
                 "imageUrl",
