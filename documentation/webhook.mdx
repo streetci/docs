@@ -7,7 +7,11 @@ A webhook is a callback function based on the HTTP protocol.
 
 It allows a remote API to establish event-oriented communication with our API.
 
-In simple terms, events can be subscribed to on our API, and whenever an event occurs on a parcel, the remote API will be called using the HTTP protocol.
+## Event definition
+
+In our system, an event is a specific state change in the lifecycle of a parcel that is monitored and notified via webhooks.
+Each event represents a stage in the parcel's status.
+When an event occurs, the webhook is triggered to inform external systems.
 
 ## How Our Webhook Works
 
@@ -35,38 +39,46 @@ In simple terms, events can be subscribed to on our API, and whenever an event o
 
 ## Event List
 
-Below is the list of events that will be notified to the callback:
+Events correspond to [Parcel Status Codes](/documentation/parcel_status_codes)
 
 ### Registration Events
 
-- `PENDING`: The delivery order has been pre-recorded in our system and is awaiting additional information to validate the order.
-- `REGISTERED`: The delivery order has been registered in our system.
+- `PENDING`: The parcel is awaiting further action.
+- `REGISTERED`: The parcel has been registered in the system.
 
 ### Collection Events
 
-- `WAITING_FOR_COLLECTION`: The parcel is waiting to be collected.
+- `ASSIGNED_FOR_COLLECTION`: The parcel has been assigned for collection.
 - `COLLECTION_IN_PROGRESS`: The collection of the parcel is in progress.
 - `COLLECTED`: The parcel has been collected successfully.
-- `COLLECTION_FAILED`: The parcel could not be collected for various reasons (e.g., sender absent, incorrect collection information, etc.). A new collection attempt will be made.
+- `NOT_COLLECTED`: The parcel could not be collected.
+- `COLLECTION_POSTPONED`: The collection of the parcel has been postponed.
 
 ### Delivery Events
 
+- `WAREHOUSED`: The parcel is stored in the warehouse.
+- `ASSIGNED_FOR_DELIVERY`: The parcel has been assigned for delivery.
 - `WAITING_FOR_DELIVERY`: The parcel is waiting to be delivered.
 - `DELIVERY_IN_PROGRESS`: The delivery of the parcel is in progress.
 - `DELIVERED`: The parcel has been delivered successfully.
-- `DELIVERY_FAILED`: The parcel could not be delivered for various reasons (recipient absent, incorrect delivery information, parcel refused, etc.). A new delivery attempt will be made.
+- `NOT_DELIVERED`: The parcel could not be delivered.
+- `DELIVERY_POSTPONED`: The delivery of the parcel has been postponed.
+- `REFUSED`: The parcel was refused by the recipient.
 
 ### Return Events
 
+- `ARTICLE_TO_RETURN`: The parcel is marked for return.
+- `ASSIGNED_FOR_RETURN`: The parcel has been assigned for return.
 - `WAITING_FOR_RETURN`: The parcel is waiting to be returned.
 - `RETURN_IN_PROGRESS`: The return of the parcel is in progress.
 - `RETURNED`: The parcel has been returned successfully.
-- `RETURN_FAILED`: The parcel could not be returned for various reasons (e.g., sender absent, incorrect collection information, etc.). A new return attempt will be made.
+- `NOT_RETURNED`: The parcel could not be returned.
+- `RETURN_POSTPONED`: The return of the parcel has been postponed.
 
 ### Other Events
 
 - `LOST`: The parcel is lost and cannot be delivered or returned.
-- `DAMAGED`: The parcel has suffered irreparable damage, making it unfit for delivery or return.
+- `DAMAGED`: The parcel has been damaged during the delivery process, making it unfit for delivery or return.
 - `CANCELED`: The delivery order has been canceled.
 
 ### Example Webhook Payload
@@ -74,6 +86,8 @@ Below is the list of events that will be notified to the callback:
 ```json
 {
   "event": "DELIVERED",
+  "description": "The parcel has been delivered successfully",
+  "timestamp": "2024-06-06T12:00:00Z",
   "item": {
     "reference": "0da108ae-3f6c-41ba-ba3b-69062bf255e4",
     "name": "iPhone 15 Pro Max",
@@ -81,27 +95,23 @@ Below is the list of events that will be notified to the callback:
     "size": "S",
     "dimension": "L x l x H: 16cm x 30cm",
     "quantity": 1,
-    "totalPrice": 700000.0,
+    "amountToCollect": 500000,
     "imageUrl": "https://placehold.co/720.png",
-    "store": {
-      "id": "42f22cc2-2467-11ef-9454-0242ac120002",
-      "name": "Abidjan Smartphone"
-    },
     "pickupAddress": {
       "placeId": "ChIJj25rEpmUwQ8ROH4YrabOvdc",
       "latitude": 5.4054499,
       "longitude": -3.9947895,
-      "locality": "Cocody",
-      "name": "Street Côte d'Ivoire, Abidjan",
+      "city": "Cocody",
+      "name": "Apple store, Abidjan",
       "landmark": "Socofrais, angré pétro ivoire",
       "phoneNumber": "+2250142092323"
     },
     "deliveryAddress": {
       "latitude": 5.4054499,
       "longitude": -3.9947895,
-      "locality": "Yopougon",
-      "name": "8X9P+PQW, Rue Montigny, Abidjan",
-      "landmark": "Nearest landmark",
+      "city": "Cocody",
+      "name": "Street Côte d'ivoire, Angré pétro, Abidjan",
+      "landmark": "Socofrais",
       "phoneNumber": "+2250546781941"
     },
     "status": {

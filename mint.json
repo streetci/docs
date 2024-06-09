@@ -45,6 +45,10 @@
       "pages": ["introduction"]
     },
     {
+      "group": "Parcel Status Codes",
+      "pages": ["documentation/parcel_status_codes"]
+    },
+    {
       "group": "Webhook",
       "pages": ["documentation/webhook"]
     },
