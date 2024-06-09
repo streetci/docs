@@ -37,7 +37,7 @@
         }
       },
       "post": {
-        "summary": "Create a webhook",
+        "summary": "Create Webhook",
         "description": "Provide a single callback URL where notifications for all events will be sent",
         "requestBody": {
           "required": true,
@@ -65,7 +65,7 @@
     },
     "/webhooks/{webhookId}": {
       "get": {
-        "summary": "Get a webhook",
+        "summary": "Get webhook",
         "description": "Retrieve a specific webhook by ID",
         "parameters": [
           {
@@ -91,7 +91,7 @@
         }
       },
       "put": {
-        "summary": "Update a webhook",
+        "summary": "Update Webhook",
         "description": "Update an existing webhook by ID",
         "parameters": [
           {
@@ -127,7 +127,7 @@
         }
       },
       "delete": {
-        "summary": "Delete a webhook",
+        "summary": "Delete Webhook",
         "description": "Delete a webhook by ID",
         "parameters": [
           {

@@ -44,7 +44,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/DeliveryOrderRequest"
+                "$ref": "#/components/schemas/OrderRequest"
               }
             }
           }
@@ -55,7 +55,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DeliveryOrderResponse"
+                  "$ref": "#/components/schemas/OrderResponse"
                 }
               }
             }
@@ -84,7 +84,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DeliveryOrderResponse"
+                  "$ref": "#/components/schemas/OrderResponse"
                 }
               }
             }
@@ -110,7 +110,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/DeliveryOrderRequest"
+                "$ref": "#/components/schemas/OrderRequest"
               }
             }
           }
@@ -152,7 +152,7 @@
   },
   "components": {
     "schemas": {
-      "DeliveryOrderRequest": {
+      "OrderRequest": {
         "type": "object",
         "properties": {
           "orderReference": {
@@ -356,7 +356,7 @@
           "items"
         ]
       },
-      "DeliveryOrderResponse": {
+      "OrderResponse": {
         "type": "object",
         "properties": {
           "orderReference": {
