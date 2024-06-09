@@ -126,76 +126,10 @@
             "type": "number",
             "format": "float",
             "description": "Fee for the delivery service",
-            "example": 2000
-          },
-          "deliveryAddress": {
-            "type": "object",
-            "properties": {
-              "latitude": {
-                "type": "number",
-                "format": "float",
-                "description": "Latitude of the delivery address",
-                "example": 5.4054499
-              },
-              "longitude": {
-                "type": "number",
-                "format": "float",
-                "description": "Longitude of the delivery address",
-                "example": -3.9947895
-              },
-              "city": {
-                "type": "string",
-                "description": "City of the delivery address",
-                "example": "Cocody"
-              }
-            },
-            "required": ["city"]
-          },
-          "items": {
-            "type": "array",
-            "description": "List of items in the delivery order",
-            "items": {
-              "type": "object",
-              "properties": {
-                "size": {
-                  "type": "string",
-                  "description": "Size of the item. Available options: `S`, `M`, `L`, `XL`, `XXL`.",
-                  "example": "S"
-                },
-                "pickupAddress": {
-                  "type": "object",
-                  "properties": {
-                    "placeId": {
-                      "type": "string",
-                      "description": "Place ID of the pickup address. This is a custom field that you can fill with any reference that identifies the pickup address in your system. It can be the ID of the warehouse or the store where the parcel is to be picked up. You can also use the **place_id** corresponding to the latlng (latitude, longitude) of the pickup address - See [Google Geocoding API](https://developers.google.com/maps/documentation/geocoding/requests-reverse-geocoding)",
-                      "example": "ChIJj25rEpmUwQ8ROH4YrabOvdc"
-                    },
-                    "latitude": {
-                      "type": "number",
-                      "format": "float",
-                      "description": "Latitude of the pickup address",
-                      "example": 5.4054499
-                    },
-                    "longitude": {
-                      "type": "number",
-                      "format": "float",
-                      "description": "Longitude of the pickup address",
-                      "example": -3.9947895
-                    },
-                    "city": {
-                      "type": "string",
-                      "description": "City of the pickup address",
-                      "example": "Cocody"
-                    }
-                  },
-                  "required": ["placeId", "latitude", "longitude", "city"]
-                }
-              },
-              "required": ["size", "pickupAddress"]
-            }
+            "example": 2000.0
           }
         },
-        "required": ["deliveryFee", "deliveryAddress", "items"]
+        "required": ["deliveryFee"]
       }
     },
     "securitySchemes": {

@@ -156,31 +156,9 @@
             "type": "string",
             "description": "Fully qualified url of the webhook endpoint",
             "example": "https://website.com/my_webhook_target"
-          },
-          "active": {
-            "type": "boolean",
-            "description": "Indicates if the webhook is active",
-            "example": true
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The creation timestamp of the webhook",
-            "example": "2020-10-15T12:09:49.355Z"
-          },
-          "updatedAt": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The last update timestamp of the webhook",
-            "example": "2020-10-15T12:09:49.355Z"
           }
         },
-        "required": [
-          "url",
-          "active",
-          "createdAt",
-          "updatedAt"
-        ]
+        "required": ["url"]
       },
       "WebhookResponse": {
         "type": "object",
@@ -213,13 +191,7 @@
             "example": "2020-10-15T12:09:49.355Z"
           }
         },
-        "required": [
-          "id",
-          "url",
-          "active",
-          "createdAt",
-          "updatedAt"
-        ]
+        "required": ["id", "url", "active", "createdAt", "updatedAt"]
       }
     },
     "securitySchemes": {
