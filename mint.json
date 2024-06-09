@@ -56,6 +56,11 @@
       "group": "HTTP Status Codes",
       "pages": ["documentation/http_status_codes"]
     },
+
+    {
+      "group": "Data",
+      "pages": ["api-reference/checkout/endpoint/checkout"]
+    },
     {
       "group": "Delivery Orders",
       "pages": [

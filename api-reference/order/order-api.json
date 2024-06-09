@@ -232,7 +232,7 @@
                 },
                 "size": {
                   "type": "string",
-                  "description": "Size of the item",
+                  "description": "Size of the item. Available options: `S`, `M`, `L`, `XL`, `XXL`.",
                   "example": "S"
                 },
                 "dimension": {
@@ -261,7 +261,7 @@
                   "properties": {
                     "placeId": {
                       "type": "string",
-                      "description": "Place ID of the pickup address. It is recommended to use the merchant ID in your system or the **place_id** corresponding to the latlng (latitude, longitude) - See [Google Geocoding API](https://developers.google.com/maps/documentation/geocoding/requests-reverse-geocoding)",
+                      "description": "Place ID of the pickup address. This is a custom field that you can fill with any reference that identifies the pickup address in your system. It can be the ID of the warehouse or the store where the parcel is to be picked up. You can also use the **place_id** corresponding to the latlng (latitude, longitude) of the pickup address - See [Google Geocoding API](https://developers.google.com/maps/documentation/geocoding/requests-reverse-geocoding)",
                       "example": "ChIJj25rEpmUwQ8ROH4YrabOvdc"
                     },
                     "latitude": {
@@ -417,7 +417,7 @@
                 },
                 "size": {
                   "type": "string",
-                  "description": "Size of the item. Available options: `S`, `M`, `L`, `XL`, `XXL`",
+                  "description": "Size of the item. Available options: `S`, `M`, `L`, `XL`, `XXL`.",
                   "example": "S"
                 },
                 "dimension": {
@@ -446,7 +446,7 @@
                   "properties": {
                     "placeId": {
                       "type": "string",
-                      "description": "Place ID of the pickup address. It is recommended to use the merchant ID in your system or the **place_id** corresponding to the latlng (latitude, longitude) - See [Google Geocoding API](https://developers.google.com/maps/documentation/geocoding/requests-reverse-geocoding)",
+                      "description": "Place ID of the pickup address. This is a custom field that you can fill with any reference that identifies the pickup address in your system. It can be the ID of the warehouse or the store where the parcel is to be picked up. You can also use the **place_id** corresponding to the latlng (latitude, longitude) of the pickup address - See [Google Geocoding API](https://developers.google.com/maps/documentation/geocoding/requests-reverse-geocoding)",
                       "example": "ChIJj25rEpmUwQ8ROH4YrabOvdc"
                     },
                     "latitude": {
