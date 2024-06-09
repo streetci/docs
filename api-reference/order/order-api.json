@@ -160,12 +160,6 @@
             "description": "Unique identifier for the order. This is a custom field that you can fill with any reference that identifies the order in your system.",
             "example": "19410b7e-4e21-48d2-a309-21625d7d2f57"
           },
-          "totalAmountToCollect": {
-            "type": "number",
-            "format": "float",
-            "description": "Total amount to collect from the client, including delivery service fee, in case of cash on delivery",
-            "example": 700000.0
-          },
           "deliveryAddress": {
             "type": "object",
             "properties": {
@@ -322,8 +316,6 @@
         },
         "required": [
           "orderReference",
-          "totalAmountToCollect",
-          "deliveryFee",
           "deliveryAddress",
           "items"
         ]
@@ -335,12 +327,6 @@
             "type": "string",
             "description": "Unique identifier for the order. This is a custom field that you can fill with any reference that identifies the order in your system.",
             "example": "19410b7e-4e21-48d2-a309-21625d7d2f57"
-          },
-          "totalAmountToCollect": {
-            "type": "number",
-            "format": "float",
-            "description": "Total amount to collect from the client, including delivery service fee, in case of cash on delivery",
-            "example": 700000.0
           },
           "deliveryFee": {
             "type": "number",
@@ -385,10 +371,7 @@
               }
             },
             "required": [
-              "latitude",
-              "longitude",
               "city",
-              "name",
               "landmark",
               "phoneNumber"
             ]
@@ -530,7 +513,6 @@
         },
         "required": [
           "orderReference",
-          "totalAmountToCollect",
           "deliveryFee",
           "deliveryAddress",
           "items"
