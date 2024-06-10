@@ -74,7 +74,7 @@
       "group": "Webhooks",
       "pages": [
         "api-reference/webhook/endpoint/create-webhook",
-        "api-reference/webhook/endpoint/get-webhook",
+        "api-reference/webhook/endpoint/get-webhooks",
         "api-reference/webhook/endpoint/update-webhook",
         "api-reference/webhook/endpoint/delete-webhook"
       ]
