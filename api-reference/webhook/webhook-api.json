@@ -173,11 +173,6 @@
             "description": "Fully qualified url of the webhook endpoint",
             "example": "https://website.com/my_webhook_target"
           },
-          "active": {
-            "type": "boolean",
-            "description": "Indicates if the webhook is active",
-            "example": true
-          },
           "createdAt": {
             "type": "string",
             "format": "date-time",
@@ -191,7 +186,7 @@
             "example": "2020-10-15T12:09:49.355Z"
           }
         },
-        "required": ["id", "url", "active", "createdAt", "updatedAt"]
+        "required": ["id", "url", "createdAt", "updatedAt"]
       }
     },
     "securitySchemes": {

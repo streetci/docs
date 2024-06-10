@@ -196,11 +196,7 @@
                 "example": "+2250546781941"
               }
             },
-            "required": [
-              "city",
-              "landmark",
-              "phoneNumber"
-            ]
+            "required": ["city", "landmark", "phoneNumber"]
           },
           "items": {
             "type": "array",
@@ -249,6 +245,11 @@
                   "type": "string",
                   "description": "Image URL of the item",
                   "example": "https://placehold.co/720.png"
+                },
+                "purchaseLink": {
+                  "type": "string",
+                  "description": "URL directing users to the webpage where they can view details and purchase the item.",
+                  "example": "https://www.apple.com/ci/iphone-15-pro/specs"
                 },
                 "pickupAddress": {
                   "type": "object",
@@ -309,16 +310,13 @@
                 "quantity",
                 "amountToCollect",
                 "imageUrl",
+                "purchaseLink",
                 "pickupAddress"
               ]
             }
           }
         },
-        "required": [
-          "orderReference",
-          "deliveryAddress",
-          "items"
-        ]
+        "required": ["orderReference", "deliveryAddress", "items"]
       },
       "OrderResponse": {
         "type": "object",
@@ -370,11 +368,7 @@
                 "example": "+2250546781941"
               }
             },
-            "required": [
-              "city",
-              "landmark",
-              "phoneNumber"
-            ]
+            "required": ["city", "landmark", "phoneNumber"]
           },
           "items": {
             "type": "array",
@@ -423,6 +417,11 @@
                   "type": "string",
                   "description": "Image URL of the item",
                   "example": "https://placehold.co/720.png"
+                },
+                "purchaseLink": {
+                  "type": "string",
+                  "description": "URL directing users to the webpage where they can view details and purchase the item.",
+                  "example": "https://www.apple.com/ci/iphone-15-pro/specs"
                 },
                 "pickupAddress": {
                   "type": "object",
@@ -505,6 +504,7 @@
                 "quantity",
                 "amountToCollect",
                 "imageUrl",
+                "purchaseLink",
                 "pickupAddress",
                 "status"
               ]
