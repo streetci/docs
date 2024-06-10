@@ -91,7 +91,7 @@
                       "type": "number",
                       "format": "float",
                       "description": "Latitude of the pickup address",
-                      "example": 5.4054498
+                      "example": 5.4054499
                     },
                     "longitude": {
                       "type": "number",
