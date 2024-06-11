@@ -92,8 +92,8 @@
         }
       },
       "put": {
-        "summary": "Update Delivery Order",
-        "description": "Update an existing delivery order by reference",
+        "summary": "Cancel Delivery Order",
+        "description": "Cancel an existing delivery order by reference",
         "parameters": [
           {
             "in": "path",
@@ -105,19 +105,9 @@
             }
           }
         ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/OrderRequest"
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
-            "description": "Delivery order updated",
+            "description": "Delivery order canceled",
             "content": {
               "application/json": {
                 "schema": {

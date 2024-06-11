@@ -66,8 +66,7 @@
       "pages": [
         "api-reference/order/endpoint/create-order",
         "api-reference/order/endpoint/get-order",
-        "api-reference/order/endpoint/update-order",
-        "api-reference/order/endpoint/delete-order"
+        "api-reference/order/endpoint/cancel-order"
       ]
     },
     {
