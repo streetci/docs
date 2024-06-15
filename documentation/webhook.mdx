@@ -1,5 +1,5 @@
 ---
-title: Documentation
+title: Webhooks
 description: Overview of how our Webhook works
 ---
 
@@ -13,7 +13,7 @@ In our system, an event is a change in the parcel's status in the delivery proce
 
 ## How Our Webhook Works
 
-1. **Subscription to Events**: The remote API (client) subscribes to events on our API by providing a single callback URL where notifications for all events will be sent.
+1. **Subscription to Events**: The remote API (client) subscribes to events on our API by providing a callback URL where notifications for all events will be sent.
 2. **Event Triggering**: When an event occurs within our system, a `POST` request is sent to the client's callback URL with details about the event.
 3. **Payload**: The payload of the `POST` request contains information about the event, including the event type and relevant data associated with the event.
 4. **Response Handling**: The client’s server processes the incoming webhook payload and responds with a status code to acknowledge receipt.
@@ -37,7 +37,7 @@ In our system, an event is a change in the parcel's status in the delivery proce
 
 ## Event List
 
-Events correspond to [Parcel Status Codes](/documentation/parcel_status_codes)
+Events correspond to [Delivery Tracking Statuses](/documentation/delivery_tracking_statuses)
 
 ### Registration Events
 

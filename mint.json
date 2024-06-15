@@ -45,18 +45,13 @@
       "pages": ["introduction"]
     },
     {
-      "group": "Parcel Tracking Statuses",
-      "pages": ["documentation/tracking_statuses"]
+      "group": "Documentation",
+      "pages": [
+        "documentation/delivery_tracking_statuses",
+        "documentation/webhook",
+        "documentation/http_status_codes"
+      ]
     },
-    {
-      "group": "Webhook",
-      "pages": ["documentation/webhook"]
-    },
-    {
-      "group": "HTTP Status Codes",
-      "pages": ["documentation/http_status_codes"]
-    },
-
     {
       "group": "Data",
       "pages": ["api-reference/checkout/endpoint/checkout"]
