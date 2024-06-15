@@ -1,7 +1,6 @@
 {
   "$schema": "https://mintlify.com/schema.json",
   "name": "Street CI",
-  
   "logo": {
     "dark": "/logo/street.jpeg",
     "light": "/logo/street.jpeg"
@@ -46,8 +45,8 @@
       "pages": ["introduction"]
     },
     {
-      "group": "Parcel Status Codes",
-      "pages": ["documentation/parcel_status_codes"]
+      "group": "Parcel Tracking Statuses",
+      "pages": ["documentation/tracking_statuses"]
     },
     {
       "group": "Webhook",
