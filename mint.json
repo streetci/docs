@@ -47,7 +47,7 @@
     {
       "group": "Documentation",
       "pages": [
-        "documentation/delivery_tracking_statuses",
+        "documentation/tracking_statuses",
         "documentation/webhook",
         "documentation/http_status_codes"
       ]

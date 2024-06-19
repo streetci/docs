@@ -37,47 +37,7 @@ In our system, an event is a change in the parcel's status in the delivery proce
 
 ## Event List
 
-Events correspond to [Delivery Tracking Statuses](/documentation/delivery_tracking_statuses)
-
-### Registration Events
-
-- `PENDING`: The parcel is awaiting further action.
-- `REGISTERED`: The parcel has been registered in the system.
-
-### Collection Events
-
-- `ASSIGNED_FOR_COLLECTION`: The parcel has been assigned for collection.
-- `COLLECTION_IN_PROGRESS`: The collection of the parcel is in progress.
-- `COLLECTED`: The parcel has been collected successfully.
-- `NOT_COLLECTED`: The parcel could not be collected.
-- `COLLECTION_POSTPONED`: The collection of the parcel has been postponed.
-
-### Delivery Events
-
-- `WAREHOUSED`: The parcel is stored in the warehouse.
-- `ASSIGNED_FOR_DELIVERY`: The parcel has been assigned for delivery.
-- `WAITING_FOR_DELIVERY`: The parcel is waiting to be delivered.
-- `DELIVERY_IN_PROGRESS`: The delivery of the parcel is in progress.
-- `DELIVERED`: The parcel has been delivered successfully.
-- `NOT_DELIVERED`: The parcel could not be delivered.
-- `DELIVERY_POSTPONED`: The delivery of the parcel has been postponed.
-- `REFUSED`: The parcel was refused by the recipient.
-
-### Return Events
-
-- `ARTICLE_TO_RETURN`: The parcel is marked for return.
-- `ASSIGNED_FOR_RETURN`: The parcel has been assigned for return.
-- `WAITING_FOR_RETURN`: The parcel is waiting to be returned.
-- `RETURN_IN_PROGRESS`: The return of the parcel is in progress.
-- `RETURNED`: The parcel has been returned successfully.
-- `NOT_RETURNED`: The parcel could not be returned.
-- `RETURN_POSTPONED`: The return of the parcel has been postponed.
-
-### Other Events
-
-- `LOST`: The parcel is lost and cannot be delivered or returned.
-- `DAMAGED`: The parcel has been damaged during the delivery process, making it unfit for delivery or return.
-- `CANCELED`: The delivery order has been canceled.
+Events correspond to [Delivery Tracking Statuses](/documentation/tracking_statuses)
 
 ### Example Webhook Payload
 

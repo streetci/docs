@@ -457,7 +457,7 @@
                   "properties": {
                     "code": {
                       "type": "string",
-                      "description": "Status code of the item. See [Delivery Tracking Statuses](/documentation/delivery_tracking_statuses)",
+                      "description": "Status code of the item. See [Delivery Tracking Statuses](/documentation/tracking_statuses)",
                       "example": "REGISTERED"
                     },
                     "description": {
