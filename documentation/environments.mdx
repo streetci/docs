@@ -1,0 +1,34 @@
+---
+title: API Environments
+description: Detailed descriptions of the production and development environments for our Delivery API.
+---
+
+## Production Environment
+**URL:** `https://api.street.ci/ecommerce`
+
+The production environment is the live version of our Delivery API. This environment is stable and fully functional, intended for use by our clients and partners in their live applications.
+
+**Key Features:**
+- **High Availability:** Ensures minimal downtime and reliable performance.
+- **Scalability:** Can handle high volumes of requests.
+- **Security:** Implements robust security measures to protect data.
+- **Support:** Offers dedicated support and monitoring for any issues that may arise.
+
+**Usage:**
+Clients and partners should use this environment for all live activities, including placing orders, tracking deliveries, and managing customer data.
+
+## Development Environment
+**URL:** `https://devapi.street.ci/ecommerce`
+
+The development environment is a sandbox version of our Delivery API, used for testing and development purposes. This environment allows developers to experiment, test new features, and integrate the API with their applications without affecting live data.
+
+**Key Features:**
+- **Flexibility:** Provides a safe space for testing new features and updates.
+- **Isolation:** Ensures that testing and development activities do not impact the production environment.
+- **Debugging:** Equipped with tools and logs to assist in identifying and resolving issues.
+
+**Usage:**
+Developers should use this environment for all testing and development activities. This includes integrating the API with new applications, testing updates, and experimenting with new features before deploying them to the production environment.
+
+**Note:**
+Data and transactions in the development environment are not live and should not be considered final. Always ensure thorough testing in this environment before moving to production.

@@ -47,6 +47,7 @@
     {
       "group": "Documentation",
       "pages": [
+        "documentation/environments",
         "documentation/tracking_statuses",
         "documentation/webhook",
         "documentation/http_status_codes"
